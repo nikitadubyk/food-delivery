@@ -17,6 +17,7 @@
 .card_slider {
     display: block;
     width: 20rem;
+    height: 12rem;
     border-radius: 10%;
     cursor: pointer;
     transition: 0.3s all;
@@ -26,10 +27,7 @@
     width: 100%;
     height: 100%;
     border-radius: 10%;
-}
-
-.card_slider:hover {
-    transform: translateY(-5px);
+    object-fit: cover;
 }
 
 .card__img {

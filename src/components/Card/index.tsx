@@ -6,8 +6,8 @@ import style from './Card.module.css'
 
 interface CardProps {
     image: string
-    name: string
-    timeDelivery: number
+    name?: string
+    timeDelivery?: number
     id?: number
     slider?: boolean
 }

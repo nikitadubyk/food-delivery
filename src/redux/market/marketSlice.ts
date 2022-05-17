@@ -2,24 +2,24 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface MarketSliceState {
     market: []
-    status: 'idle' | 'loading' | 'error'
+    loadingStatus: 'idle' | 'loading' | 'error'
 }
 
 const initialState: MarketSliceState = {
     market: [],
-    status: 'idle',
+    loadingStatus: 'idle',
 }
 
-const foodSlice = createSlice({
+const marketSlice = createSlice({
     name: 'market',
     initialState,
     reducers: {
         getMarket(state, action) {
             state.market = action.payload
-            state.status = 'idle'
+            state.loadingStatus = 'idle'
         },
     },
 })
 
-export const { getMarket } = foodSlice.actions
-export default foodSlice.reducer
+export const { getMarket } = marketSlice.actions
+export default marketSlice.reducer
