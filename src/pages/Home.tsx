@@ -3,12 +3,14 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
 
 import { selectorSlider } from '../redux/slider/selector'
+import { selectMarketData } from '../redux/market/selectors'
 import { useSelector } from 'react-redux'
 
 import Card from '../components/Card'
 
 const Home = () => {
     const sliders = useSelector(selectorSlider)
+    const market = useSelector(selectMarketData)
 
     return (
         <div className='root'>
@@ -42,12 +44,19 @@ const Home = () => {
             </Splide>
 
             <h2 className='home-title'>Рестораны</h2>
-            <Card
-                id={1}
-                image='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-                name='Test Name'
-                timeDelivery={20}
-            />
+            <div className='cards__wrapper'>
+                {market.market.map(market => {
+                    return (
+                        <Card
+                            id={market.id}
+                            image={market.image}
+                            name={market.name}
+                            timeDelivery={market.timeDelivery}
+                            key={market.id}
+                        />
+                    )
+                })}
+            </div>
         </div>
     )
 }

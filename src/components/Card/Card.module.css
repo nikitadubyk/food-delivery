@@ -7,6 +7,7 @@
     cursor: pointer;
     transition: 0.3s all;
     padding-bottom: 1rem;
+    margin: 1rem;
 }
 
 .card:hover {

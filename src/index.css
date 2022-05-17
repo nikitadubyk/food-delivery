@@ -6,7 +6,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-h3 {
+h3,
+h4,
+p {
     margin: 0;
     padding: 0;
 }
@@ -20,6 +22,19 @@ code {
     padding: 1rem 15rem;
 }
 
+.back {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+
 .home-title {
     font-size: 3rem;
+}
+
+.cards__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }

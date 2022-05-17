@@ -1,0 +1,51 @@
+.market__header {
+    padding: 1rem 0 2rem 0;
+}
+
+.market__header h2 {
+    font-size: 2rem;
+}
+
+.market__header-info {
+    display: flex;
+    align-items: center;
+}
+
+.market__header-info div {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.market__header-info svg {
+    margin-right: 0.25rem;
+}
+
+.market__food {
+    background-color: #f6f6f6;
+    padding: 2rem 0;
+}
+
+.market__food-filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.market__food-filter_item {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.market__food-filter_item_active {
+    background-color: #e3e4e6;
+    border-radius: 2rem;
+}
+
+.market__food-wrapper {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}

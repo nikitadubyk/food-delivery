@@ -1,0 +1,53 @@
+.food__card {
+    width: 15rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: #fff;
+}
+
+.food__card h4 {
+    margin: 1rem 0 0.5rem 0;
+}
+
+.food__card img {
+    width: 100%;
+    height: 13rem;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+
+.food__card__descr {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    height: 4rem;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.food__card__info {
+    display: flex;
+    align-items: center;
+}
+
+.food__card__calories,
+.food__card__gramm {
+    font-weight: 300;
+    margin: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.food__card_descr {
+    font-weight: 300;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.food__card__price {
+    font-weight: 600;
+}
+.food__card__order {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

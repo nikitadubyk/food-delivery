@@ -5,10 +5,10 @@ import { FaCarAlt } from 'react-icons/fa'
 import style from './Card.module.css'
 
 interface CardProps {
-    image: string
+    image: string | undefined
     name?: string
-    timeDelivery?: number
-    id?: number
+    timeDelivery?: string
+    id?: string
     slider?: boolean
 }
 
