@@ -2,14 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import { MarketType } from './types'
 
 interface MarketSliceState {
-    filter: string
-    correctMarket: MarketType | undefined
     market: MarketType[]
+    correctMarket: MarketType | undefined
     loadingStatus: 'idle' | 'loading' | 'error'
 }
 
 const initialState: MarketSliceState = {
-    filter: '',
     correctMarket: undefined,
     market: [
         {
@@ -18,7 +16,7 @@ const initialState: MarketSliceState = {
             name: 'Test Market',
             priceDelivery: '150 - 200',
             timeDelivery: '20 - 30',
-            filters: ['Все', 'Популярное', 'Пицца', 'Роллы', 'Бургеры'],
+            filters: ['Все', 'Пицца', 'Роллы', 'Бургеры'],
             food: [
                 {
                     id: '12',
@@ -28,7 +26,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
                 },
                 {
                     id: '1212',
@@ -38,7 +36,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Пицца',
                 },
                 {
                     id: '12321',
@@ -48,7 +46,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Бургеры',
                 },
                 {
                     id: '12312',
@@ -58,7 +56,27 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
+                },
+                {
+                    id: '12',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 'Пицца',
+                },
+                {
+                    id: '1212',
+                    title: 'Роллы 1234',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 'Роллы',
                 },
             ],
         },
@@ -78,7 +96,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
                 },
                 {
                     id: '1212',
@@ -88,7 +106,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
                 },
                 {
                     id: '12321',
@@ -98,7 +116,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
                 },
                 {
                     id: '12312',
@@ -108,7 +126,7 @@ const initialState: MarketSliceState = {
                     calories: '120',
                     gramm: '1400',
                     price: '999',
-                    filter: 0,
+                    filter: 'Роллы',
                 },
             ],
         },
@@ -125,11 +143,8 @@ const marketSlice = createSlice({
                 market => market.id === action.payload
             )
         },
-        changeFiterId(state, action) {
-            state.filter = action.payload
-        },
     },
 })
 
-export const { getCurrectMarket, changeFiterId } = marketSlice.actions
+export const { getCurrectMarket } = marketSlice.actions
 export default marketSlice.reducer

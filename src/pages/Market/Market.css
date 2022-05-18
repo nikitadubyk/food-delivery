@@ -26,29 +26,6 @@
     padding: 2rem 0;
 }
 
-.market__food-filter {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.market__food-filter_item {
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.market__food-filter_item:hover {
-    background-color: #e3e4e6;
-    border-radius: 2rem;
-}
-
-.market__food-filter_item_active {
-    background-color: #e3e4e6;
-    border-radius: 2rem;
-}
-
 .market__food-wrapper {
     padding: 2rem;
     display: flex;
