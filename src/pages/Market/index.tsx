@@ -1,66 +1,82 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { FaAngleLeft, FaCarAlt } from 'react-icons/fa'
 
+import { changeFiterId, getCurrectMarket } from '../../redux/market/marketSlice'
 import { selectMarketData } from '../../redux/market/selectors'
 import { useSelector } from 'react-redux'
-
-import { MarketType } from '../../redux/market/types'
+import { useDispatch } from 'react-redux'
 
 import './Market.css'
 import FoodCard from '../../components/FoodCard'
 
 const Market = () => {
     const { id } = useParams()
-    const [marketData, setMarketData] = useState<MarketType>()
-    const marketSelector = useSelector(selectMarketData)
+    const dispatch = useDispatch()
+    const marketData = useSelector(selectMarketData)
+
+    const changeFiter = (id: number) => {
+        dispatch(changeFiterId(id))
+    }
 
     useEffect(() => {
-        const correctMarket = marketSelector.market.find(
-            market => market.id === id
-        )
-
-        setMarketData(correctMarket)
-    }, [id, marketSelector.market])
+        dispatch(getCurrectMarket(id))
+    }, [id, marketData.market, dispatch])
 
     return (
         <div className='root'>
             <Link to='/' className='back'>
                 <FaAngleLeft /> Вернуться на главную
             </Link>
-            {marketData && (
+            {marketData.correctMarket && (
                 <>
                     <div className='market__header'>
-                        <h2>{marketData.name}</h2>
+                        <h2>{marketData.correctMarket.name}</h2>
 
                         <div className='market__header-info'>
                             <div>
-                                <FaCarAlt /> {marketData.timeDelivery} мин.
+                                <FaCarAlt />{' '}
+                                {marketData.correctMarket.timeDelivery} мин.
                             </div>
-                            <div>Доставка {marketData.priceDelivery} ₽</div>
+                            <div>
+                                Доставка{' '}
+                                {marketData.correctMarket.priceDelivery} ₽
+                            </div>
                         </div>
                     </div>
                     <div className='market__food'>
                         <div className='market__food-filter'>
-                            <div className='market__food-filter_item market__food-filter_item_active'>
-                                Популярное
-                            </div>
-                            <div className='market__food-filter_item'>
-                                Пицца
-                            </div>
-                            <div className='market__food-filter_item'>
-                                Роллы
-                            </div>
+                            {marketData.correctMarket.filters.map(
+                                (filter, i) => {
+                                    return (
+                                        <div
+                                            className={`market__food-filter_item ${
+                                                marketData.filter === i &&
+                                                'market__food-filter_item_active'
+                                            }`}
+                                            key={i}
+                                            onClick={() => changeFiter(i)}
+                                        >
+                                            {filter}
+                                        </div>
+                                    )
+                                }
+                            )}
                         </div>
                         <div className='market__food-wrapper'>
-                            <FoodCard
-                                image='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-                                title='Роллы'
-                                description='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur dicta sapiente, repellendus quos ipsum amet magnam. Modi quaerat ratione, cupiditate dignissimos, aliquid consequuntur maiores fugiat numquam, dolores amet vitae autem.'
-                                calories='100'
-                                price='800'
-                            />
+                            {marketData.correctMarket.food.map(food => {
+                                return (
+                                    <FoodCard
+                                        image={food.image}
+                                        title={food.title}
+                                        description={food.description}
+                                        calories={food.calories}
+                                        price={food.price}
+                                        key={food.id}
+                                    />
+                                )
+                            })}
                         </div>
                     </div>
                 </>

@@ -36,6 +36,12 @@
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.market__food-filter_item:hover {
+    background-color: #e3e4e6;
+    border-radius: 2rem;
 }
 
 .market__food-filter_item_active {

@@ -4,6 +4,7 @@ import sliderSlice from './slider/sliderSlice'
 
 export const store = configureStore({
     reducer: { market: marketSlice, sliders: sliderSlice },
+    devTools: true,
 })
 
 export type AppDispatch = typeof store.dispatch

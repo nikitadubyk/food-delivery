@@ -1,5 +1,6 @@
 .food__card {
     width: 15rem;
+    margin: 2rem;
     padding: 1rem;
     border-radius: 2rem;
     background-color: #fff;

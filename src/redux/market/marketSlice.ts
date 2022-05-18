@@ -2,11 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import { MarketType } from './types'
 
 interface MarketSliceState {
+    filter: 0
+    correctMarket: MarketType | undefined
     market: MarketType[]
     loadingStatus: 'idle' | 'loading' | 'error'
 }
 
 const initialState: MarketSliceState = {
+    filter: 0,
+    correctMarket: undefined,
     market: [
         {
             id: '1',
@@ -14,6 +18,49 @@ const initialState: MarketSliceState = {
             name: 'Test Market',
             priceDelivery: '150 - 200',
             timeDelivery: '20 - 30',
+            filters: ['Все', 'Популярное', 'Пицца', 'Роллы', 'Бургеры'],
+            food: [
+                {
+                    id: '12',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '1212',
+                    title: 'Роллы 1234',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '12321',
+                    title: 'Роллы 4',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '12312',
+                    title: 'Роллы 1234',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+            ],
         },
         {
             id: '2',
@@ -21,27 +68,49 @@ const initialState: MarketSliceState = {
             name: 'Test Market2',
             priceDelivery: '15 - 20',
             timeDelivery: '1230 - 123430',
-        },
-        {
-            id: '3',
-            image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-            name: 'Test Market23',
-            priceDelivery: '42314150 - 44200',
-            timeDelivery: '24120 - 32340',
-        },
-        {
-            id: '4',
-            image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-            name: 'Test Market23',
-            priceDelivery: '42314150 - 44200',
-            timeDelivery: '24120 - 32340',
-        },
-        {
-            id: '5',
-            image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-            name: 'Test Market23',
-            priceDelivery: '42314150 - 44200',
-            timeDelivery: '24120 - 32340',
+            filters: ['Все', 'Популярное', 'Пицца', 'Роллы'],
+            food: [
+                {
+                    id: '12',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '1212',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '12321',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+                {
+                    id: '12312',
+                    title: 'Роллы',
+                    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+                    description: 'Лучшие роллы в городе!',
+                    calories: '120',
+                    gramm: '1400',
+                    price: '999',
+                    filter: 0,
+                },
+            ],
         },
     ],
     loadingStatus: 'idle',
@@ -51,12 +120,16 @@ const marketSlice = createSlice({
     name: 'market',
     initialState,
     reducers: {
-        getMarket(state, action) {
-            state.market = action.payload
-            state.loadingStatus = 'idle'
+        getCurrectMarket(state, action) {
+            state.correctMarket = state.market.find(
+                market => market.id === action.payload
+            )
+        },
+        changeFiterId(state, action) {
+            state.filter = action.payload
         },
     },
 })
 
-export const { getMarket } = marketSlice.actions
+export const { getCurrectMarket, changeFiterId } = marketSlice.actions
 export default marketSlice.reducer

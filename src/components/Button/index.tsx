@@ -5,12 +5,22 @@ import style from './Button.module.css'
 interface ButtonProps {
     className?: string
     children: string
+    type?: 'button' | 'submit'
     onClick?: () => void
 }
 
-const Button: React.FC<ButtonProps> = ({ className, children, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+    className,
+    children,
+    onClick,
+    type = 'button',
+}) => {
     return (
-        <button className={`${style.button} ${className}`} onClick={onClick}>
+        <button
+            className={`${style.button} ${className}`}
+            onClick={onClick}
+            type={type}
+        >
             {children.toUpperCase()}
         </button>
     )
