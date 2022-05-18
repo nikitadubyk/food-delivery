@@ -16,7 +16,7 @@ const Market = () => {
     const dispatch = useDispatch()
     const marketData = useSelector(selectMarketData)
 
-    const changeFiter = (id: number) => {
+    const changeFiter = (id: string) => {
         dispatch(changeFiterId(id))
     }
 
@@ -52,11 +52,11 @@ const Market = () => {
                                     return (
                                         <div
                                             className={`market__food-filter_item ${
-                                                marketData.filter === i &&
+                                                marketData.filter === filter &&
                                                 'market__food-filter_item_active'
                                             }`}
                                             key={i}
-                                            onClick={() => changeFiter(i)}
+                                            onClick={() => changeFiter(filter)}
                                         >
                                             {filter}
                                         </div>

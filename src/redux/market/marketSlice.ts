@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { MarketType } from './types'
 
 interface MarketSliceState {
-    filter: 0
+    filter: string
     correctMarket: MarketType | undefined
     market: MarketType[]
     loadingStatus: 'idle' | 'loading' | 'error'
 }
 
 const initialState: MarketSliceState = {
-    filter: 0,
+    filter: '',
     correctMarket: undefined,
     market: [
         {
