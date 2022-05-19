@@ -40,7 +40,9 @@ const Header: React.FC = () => {
             <div className='header__wrapper'>
                 <div className='header__wrapper-cart'>
                     <p>0 руб.</p>
-                    <FaShoppingCart />
+                    <Link to='/cart'>
+                        <FaShoppingCart />
+                    </Link>
                 </div>
                 <div className='header__wrapper-links'>
                     <Link to='/singup'>Sing Up</Link>

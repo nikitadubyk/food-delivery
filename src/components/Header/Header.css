@@ -26,6 +26,10 @@
     margin: 0 2rem;
 }
 
+.header__wrapper-cart a {
+    margin-top: 4px;
+}
+
 .header__wrapper-cart p {
     margin: 0 1rem;
 }
