@@ -59,7 +59,7 @@ const initialState: MarketSliceState = {
                     filter: 'Роллы',
                 },
                 {
-                    id: '12',
+                    id: '125525231532',
                     title: 'Роллы',
                     image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
                     description: 'Лучшие роллы в городе!',
@@ -69,7 +69,7 @@ const initialState: MarketSliceState = {
                     filter: 'Пицца',
                 },
                 {
-                    id: '1212',
+                    id: '121241234123412341234',
                     title: 'Роллы 1234',
                     image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
                     description: 'Лучшие роллы в городе!',
