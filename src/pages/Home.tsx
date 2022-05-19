@@ -1,16 +1,17 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import '@splidejs/splide/dist/css/splide.min.css'
 
 import { selectorSlider } from '../redux/slider/selector'
-import { selectMarketData } from '../redux/market/selectors'
 import { useSelector } from 'react-redux'
+import { filteredMarketSelector } from '../redux/filter/selector'
 
 import Card from '../components/Card'
 
-const Home = () => {
-    const sliders = useSelector(selectorSlider)
-    const market = useSelector(selectMarketData)
+import '@splidejs/splide/dist/css/splide.min.css'
+
+const Home: React.FC = () => {
+    const { sliderImages } = useSelector(selectorSlider)
+    const filteredMarket = useSelector(filteredMarketSelector)
 
     return (
         <div className='root'>
@@ -34,7 +35,7 @@ const Home = () => {
                     },
                 }}
             >
-                {sliders.sliderImages.map((image, i) => {
+                {sliderImages.map((image, i) => {
                     return (
                         <SplideSlide key={i}>
                             <Card image={image.image} id={image.url} slider />
@@ -45,7 +46,7 @@ const Home = () => {
 
             <h2 className='home-title'>Рестораны</h2>
             <div className='cards__wrapper'>
-                {market.market.map(market => {
+                {filteredMarket.map(market => {
                     return (
                         <Card
                             id={market.id}

@@ -32,3 +32,12 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.market__food-error {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.market__food-error p {
+    margin-top: 1rem;
+}

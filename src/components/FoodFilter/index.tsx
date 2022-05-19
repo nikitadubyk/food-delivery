@@ -6,7 +6,7 @@ import { changeActiveFilter } from '../../redux/filter/filterSlice'
 
 import './FoodFilter.css'
 
-const FoodFilter = () => {
+const FoodFilter: React.FC = () => {
     const { correctMarket } = useSelector(selectMarketData)
     const { activeFilter } = useSelector(selectFilter)
     const dispatch = useDispatch()

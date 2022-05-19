@@ -9,28 +9,24 @@ interface SliderImages {
 const initialState: SliderImages = {
     sliderImages: [
         {
-            image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+            image: 'https://1place.su/ru/blog/wp-content/uploads/2019/05/post79.jpg',
             url: '1',
         },
         {
-            image: 'https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg',
+            image: 'https://moskva-rest.ru/wp-content/uploads/2020/01/aktsii2020-1.jpg',
             url: '2',
         },
         {
-            image: 'https://cdn-media-2.freecodecamp.org/w1280/5f9c9a4c740569d1a4ca24c2.jpg',
+            image: 'https://restorannews.ru/upload/iblock/4c8/540-Skidki-RestoranNews-01.jpg',
             url: '3',
         },
         {
-            image: 'https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg',
+            image: 'https://1place.su/ru/blog/wp-content/uploads/2019/05/diskont-20-1.jpg',
             url: '4',
         },
         {
-            image: 'https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-1520x800.jpeg',
+            image: 'http://resto-zametki.com.ua/images/uploads/images2013_1/123_1.jpg',
             url: '5',
-        },
-        {
-            image: 'https://helpx.adobe.com/content/dam/help/en/photoshop/how-to/compositing/jcr%3Acontent/main-pars/image/compositing_1408x792.jpg',
-            url: '6',
         },
     ],
     loadingStatus: 'idle',

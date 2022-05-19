@@ -4,6 +4,8 @@ import Button from '../Button'
 import style from './FoodCard.module.css'
 
 interface FoodCardProps {
+    id: string
+    restarautId: string | undefined
     image: string
     title: string
     description: string
@@ -13,6 +15,8 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
+    id,
+    restarautId,
     image,
     title,
     description,
@@ -20,6 +24,16 @@ const FoodCard: React.FC<FoodCardProps> = ({
     gramm,
     price,
 }) => {
+    const showProd = () => {
+        console.log({
+            id,
+            restarautId,
+            title,
+            image,
+            price,
+        })
+    }
+
     return (
         <div className={style.food__card}>
             <img src={image} alt={title} />
@@ -39,7 +53,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 <div className={style.food__card__order}>
                     <p className={style.food__card__price}>{price} ₽</p>
 
-                    <Button>В корзину</Button>
+                    <Button onClick={showProd}>В корзину</Button>
                 </div>
             </div>
         </div>
