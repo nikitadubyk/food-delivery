@@ -1,4 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../redux/cart/cartSlice'
+
 import Button from '../Button'
 
 import style from './FoodCard.module.css'
@@ -6,17 +9,19 @@ import style from './FoodCard.module.css'
 interface FoodCardProps {
     id: string
     restarautId: string | undefined
+    restarautName: string | undefined
     image: string
     title: string
     description: string
     calories?: string
     gramm?: string
-    price: string
+    price: number
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
     id,
     restarautId,
+    restarautName,
     image,
     title,
     description,
@@ -24,14 +29,21 @@ const FoodCard: React.FC<FoodCardProps> = ({
     gramm,
     price,
 }) => {
-    const showProd = () => {
-        console.log({
-            id,
-            restarautId,
-            title,
-            image,
-            price,
-        })
+    const dispatch = useDispatch()
+
+    const onAddItem = () => {
+        dispatch(
+            addItem({
+                id,
+                restarautId,
+                restarautName,
+                description,
+                title,
+                image,
+                price,
+                count: 0,
+            })
+        )
     }
 
     return (
@@ -53,7 +65,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 <div className={style.food__card__order}>
                     <p className={style.food__card__price}>{price} ₽</p>
 
-                    <Button onClick={showProd}>В корзину</Button>
+                    <Button onClick={onAddItem}>В корзину</Button>
                 </div>
             </div>
         </div>

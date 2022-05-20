@@ -5,7 +5,7 @@ export interface MarketFoodType {
     description: string
     gramm: string
     calories: string
-    price: string
+    price: number
     filter: string
 }
 

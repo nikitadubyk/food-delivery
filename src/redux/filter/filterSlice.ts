@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Filter {
     activeFilter: string
@@ -14,10 +14,10 @@ const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        changeActiveFilter(state, action) {
+        changeActiveFilter(state, action: PayloadAction<string>) {
             state.activeFilter = action.payload
         },
-        changeSearch(state, action) {
+        changeSearch(state, action: PayloadAction<string>) {
             state.search = action.payload
         },
     },

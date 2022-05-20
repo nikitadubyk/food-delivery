@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { MarketType } from './types'
 
 interface MarketSliceState {
@@ -25,7 +25,7 @@ const initialState: MarketSliceState = {
                     description: 'Лучшие роллы в городе!',
                     calories: '120',
                     gramm: '220',
-                    price: '900',
+                    price: 900,
                     filter: 'Роллы',
                 },
                 {
@@ -35,7 +35,7 @@ const initialState: MarketSliceState = {
                     description: 'Лучшие роллы в городе!',
                     calories: '120',
                     gramm: '1400',
-                    price: '999',
+                    price: 999,
                     filter: 'Роллы',
                 },
                 {
@@ -46,7 +46,7 @@ const initialState: MarketSliceState = {
                         'Какой-то очень вкусный бургер с великолепной котлеткой',
                     calories: '500',
                     gramm: '1500',
-                    price: '399',
+                    price: 399,
                     filter: 'Бургеры',
                 },
                 {
@@ -56,7 +56,7 @@ const initialState: MarketSliceState = {
                     description: 'Самая вкусная пицца в мире!',
                     calories: '120',
                     gramm: '1400',
-                    price: '300',
+                    price: 300,
                     filter: 'Пицца',
                 },
                 {
@@ -66,7 +66,7 @@ const initialState: MarketSliceState = {
                     description: 'Большая пицца с большими колбасками!',
                     calories: '600',
                     gramm: '500',
-                    price: '499',
+                    price: 499,
                     filter: 'Пицца',
                 },
                 {
@@ -77,7 +77,7 @@ const initialState: MarketSliceState = {
                         'Запеченные роллы с какой-то то там вкусной начинкой',
                     calories: '299',
                     gramm: '300',
-                    price: '299',
+                    price: 299,
                     filter: 'Роллы',
                 },
             ],
@@ -97,7 +97,7 @@ const initialState: MarketSliceState = {
                     description: 'Мексиканская пицца',
                     calories: '900',
                     gramm: '750',
-                    price: '699',
+                    price: 699,
                     filter: 'Пицца',
                 },
                 {
@@ -107,7 +107,7 @@ const initialState: MarketSliceState = {
                     description: 'Ветчина и помидоры сделают тебя счастливей',
                     calories: '1100',
                     gramm: '750',
-                    price: '499',
+                    price: 499,
                     filter: 'Пицца',
                 },
                 {
@@ -117,7 +117,7 @@ const initialState: MarketSliceState = {
                     description: 'Все самые вкусные ингридиенты и все тут!',
                     calories: '1200',
                     gramm: '1500',
-                    price: '999',
+                    price: 999,
                     filter: 'Пицца',
                 },
                 {
@@ -127,7 +127,7 @@ const initialState: MarketSliceState = {
                     description: 'Вкусный большой бургер',
                     calories: '1400',
                     gramm: '1100',
-                    price: '399',
+                    price: 399,
                     filter: 'Бургеры',
                 },
             ],
@@ -140,7 +140,7 @@ const marketSlice = createSlice({
     name: 'market',
     initialState,
     reducers: {
-        getCurrectMarket(state, action) {
+        getCurrectMarket(state, action: PayloadAction<string | undefined>) {
             state.correctMarket = state.market.find(
                 market => market.id === action.payload
             )

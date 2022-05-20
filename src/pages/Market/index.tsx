@@ -6,7 +6,7 @@ import { changeActiveFilter } from '../../redux/filter/filterSlice'
 import { filteredProductSelector } from '../../redux/filter/selector'
 import { FaAngleLeft, FaCarAlt, FaRegFrown } from 'react-icons/fa'
 
-import FoodCard from '../../components/FoodCard'
+import FoodItem from '../../components/FoodItem'
 import FoodFilter from '../../components/FoodFilter'
 
 import './Market.css'
@@ -45,9 +45,10 @@ const Market: React.FC = () => {
                         <div className='market__food-wrapper'>
                             {filteredProduct.food?.map(food => {
                                 return (
-                                    <FoodCard
+                                    <FoodItem
                                         id={food.id}
                                         restarautId={filteredProduct.id}
+                                        restarautName={filteredProduct.name}
                                         image={food.image}
                                         title={food.title}
                                         description={food.description}

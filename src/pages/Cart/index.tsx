@@ -1,13 +1,24 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { FaPlus, FaMinus, FaAngleLeft } from 'react-icons/fa'
+import { FaAngleLeft } from 'react-icons/fa'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { selectorCart } from '../../redux/cart/selector'
 
 import Button from '../../components/Button'
+import CartItem from '../../components/CartItem'
 
 import './Cart.css'
 
 const Cart: React.FC = () => {
+    const dispatch = useDispatch()
+    const { cart, totalPrice } = useSelector(selectorCart)
+
+    if (cart.length === 0) {
+        return <p>Корзина пустая</p>
+    }
+
     return (
         <div className='root'>
             <Link to='/' className='back'>
@@ -16,51 +27,30 @@ const Cart: React.FC = () => {
             <h2 className='cart__title'>Корзина</h2>
 
             <p className='cart__market'>
-                Ваш заказ в ресторане <span>Лучший ресторан</span>
+                Ваш заказ в ресторане <span>{cart[0].restarautName}</span>
             </p>
 
             <div className='cart'>
-                <div className='cart__item'>
-                    <div className='cart__wrapper'>
-                        <img
-                            src='https://emosurff.com/i/0004R8005tf0/img_3911.jpg'
-                            alt='бургер'
-                        />
-                        <div>
-                            <div className='cart__descr'>
-                                <h4>Бургер Вкусный</h4>
-
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Cum officiis expedita est
-                                    molestiae veniam distinctio et in ea,
-                                    incidunt ipsa sapiente!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='cart__item-count'>
-                        <button className='cart__item-button'>
-                            <FaMinus />
-                        </button>
-                        <div>1</div>
-                        <button className='cart__item-button'>
-                            <FaPlus />
-                        </button>
-                    </div>
-
-                    <div className='cart__price'>700 ₽</div>
-
-                    <div className='cart__delete'>&#10010;</div>
+                {cart &&
+                    cart.map(item => {
+                        return (
+                            <CartItem
+                                key={item.id}
+                                id={item.id}
+                                title={item.title}
+                                description={item.description}
+                                image={item.image}
+                                count={item.count}
+                                price={item.price}
+                            />
+                        )
+                    })}
+            </div>
+            <div className='cart__order'>
+                <div className='cart__total'>
+                    Сумма заказа: <span>{totalPrice} ₽</span>
                 </div>
-
-                <div className='cart__order'>
-                    <div className='cart__total'>
-                        Сумма заказа: <span>1900 ₽</span>
-                    </div>
-                    <Button className='cart__button'>Заказать</Button>
-                </div>
+                <Button className='cart__button'>Заказать</Button>
             </div>
         </div>
     )

@@ -7,80 +7,8 @@
     font-size: 2rem;
 }
 
-.cart__wrapper {
-    display: flex;
-    align-items: center;
-}
-
 .cart__market span {
     font-weight: 600;
-}
-
-.cart__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    padding: 1rem;
-    border-radius: 2rem;
-    margin: 0 auto 2rem auto;
-    background-color: #f6f6f6;
-}
-
-.cart__item img {
-    margin-right: 1.5rem;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 1rem;
-    object-fit: cover;
-}
-
-.cart__descr {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 20rem;
-}
-
-.cart__descr p {
-    font-weight: 300;
-    font-size: 0.8rem;
-}
-
-.cart__item-count {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 5rem;
-}
-
-.cart__item-button {
-    cursor: pointer;
-    border-radius: 100%;
-    background-color: transparent;
-    padding: 0.3rem 0.3rem 0.2rem 0.3rem;
-    transition: 0.2s all;
-}
-
-.cart__item-button:hover {
-    transform: translateY(-2px);
-}
-
-.cart__price {
-    font-weight: 600;
-    font-size: 1.2rem;
-}
-
-.cart__delete {
-    font-size: 1.5rem;
-    opacity: 0.5;
-    cursor: pointer;
-    transform: rotate(45deg);
-    transition: all 0.3s;
-}
-
-.cart__delete:hover {
-    opacity: 1;
 }
 
 .cart__order {
