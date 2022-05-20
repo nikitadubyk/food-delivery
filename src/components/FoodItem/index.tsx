@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addItem } from '../../redux/cart/cartSlice'
+import { addItemToCart } from '../../redux/cart/cartSlice'
 
 import Button from '../Button'
 
@@ -33,7 +33,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
 
     const onAddItem = () => {
         dispatch(
-            addItem({
+            addItemToCart({
                 id,
                 restarautId,
                 restarautName,

@@ -1,8 +1,7 @@
 import React from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
-import { addItem, minusItem, removeItem } from '../../redux/cart/cartSlice'
-import { CartItemType } from '../../redux/cart/types'
+import { plusItem, minusItem, removeItem } from '../../redux/cart/cartSlice'
 
 import style from './CartItem.module.css'
 
@@ -25,7 +24,7 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
     const dispatch = useDispatch()
 
-    const onAddItem = (id: string) => dispatch(addItem({ id } as CartItemType))
+    const onAddItem = (id: string) => dispatch(plusItem(id))
     const onMunisItem = (id: string) => dispatch(minusItem(id))
     const onDeleteItem = (id: string) => dispatch(removeItem(id))
 

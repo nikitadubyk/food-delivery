@@ -53,6 +53,7 @@ const Market: React.FC = () => {
                                         title={food.title}
                                         description={food.description}
                                         calories={food.calories}
+                                        gramm={food.gramm}
                                         price={food.price}
                                         key={food.id}
                                     />

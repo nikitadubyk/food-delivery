@@ -12,4 +12,6 @@ export interface CartItemType {
 export interface CartSliceState {
     cart: CartItemType[]
     totalPrice: number
+    restarautId: string | undefined
+    errorMessage: string
 }

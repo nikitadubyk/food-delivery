@@ -5,24 +5,44 @@ import { CartItemType, CartSliceState } from './types'
 const initialState: CartSliceState = {
     cart: [],
     totalPrice: 0,
+    restarautId: '',
+    errorMessage: '',
 }
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem(state, action: PayloadAction<CartItemType>) {
+        addItemToCart(state, action: PayloadAction<CartItemType>) {
             const findItem = state.cart.find(
                 obj => obj.id === action.payload.id
             )
 
+            if (state.cart.length === 0) {
+                state.restarautId = action.payload.restarautId
+            }
+
+            if (state.restarautId === action.payload.restarautId) {
+                if (findItem) {
+                    findItem.count++
+                } else {
+                    state.cart.push({
+                        ...action.payload,
+                        count: 1,
+                    })
+                }
+            } else {
+                state.errorMessage =
+                    'У вас уже есть товары в корзине с другого ресторана'
+            }
+
+            state.totalPrice = getTotalPrice(state.cart)
+        },
+        plusItem(state, action: PayloadAction<string>) {
+            const findItem = state.cart.find(obj => obj.id === action.payload)
+
             if (findItem) {
                 findItem.count++
-            } else {
-                state.cart.push({
-                    ...action.payload,
-                    count: 1,
-                })
             }
 
             state.totalPrice = getTotalPrice(state.cart)
@@ -31,7 +51,7 @@ const cartSlice = createSlice({
             const findItem = state.cart.find(obj => obj.id === action.payload)
 
             if (findItem) {
-                findItem.count--
+                findItem.count > 1 && findItem.count--
             }
 
             state.totalPrice = getTotalPrice(state.cart)
@@ -43,5 +63,6 @@ const cartSlice = createSlice({
     },
 })
 
-export const { addItem, minusItem, removeItem } = cartSlice.actions
+export const { addItemToCart, plusItem, minusItem, removeItem } =
+    cartSlice.actions
 export default cartSlice.reducer
