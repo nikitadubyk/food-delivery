@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaAngleLeft, FaRegFrown } from 'react-icons/fa'
 
 import { useSelector } from 'react-redux'
-import { selectorCart } from '../../redux/cart/selector'
+import { selectCart } from '../../redux/cart/selectors'
 
 import Button from '../../components/Button'
 import CartItem from '../../components/CartItem'
@@ -12,7 +12,7 @@ import CartItem from '../../components/CartItem'
 import './Cart.css'
 
 const Cart: React.FC = () => {
-    const { cart, totalPrice } = useSelector(selectorCart)
+    const { cart, totalPrice } = useSelector(selectCart)
 
     if (cart.length === 0) {
         return <CartEmpty />

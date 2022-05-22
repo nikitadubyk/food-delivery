@@ -1,16 +1,16 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import { selectorSlider } from '../redux/slider/selector'
+import { selectSlider } from '../redux/slider/selectors'
 import { useSelector } from 'react-redux'
-import { filteredMarketSelector } from '../redux/filter/selector'
+import { filteredMarketSelector } from '../redux/filter/selectors'
 
 import Card from '../components/Card'
 
 import '@splidejs/splide/dist/css/splide.min.css'
 
 const Home: React.FC = () => {
-    const { sliderImages } = useSelector(selectorSlider)
+    const { sliderImages } = useSelector(selectSlider)
     const filteredMarket = useSelector(filteredMarketSelector)
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectFilter } from '../../redux/filter/selector'
+import { selectFilter } from '../../redux/filter/selectors'
 import { selectMarketData } from '../../redux/market/selectors'
 import { changeActiveFilter } from '../../redux/filter/filterSlice'
 

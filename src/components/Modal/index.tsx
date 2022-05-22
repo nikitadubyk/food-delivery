@@ -6,11 +6,12 @@ interface ModalProps {
     title: string
     message: string
     footer: any
+    isOpen: boolean
 }
 
-const Modal: React.FC<ModalProps> = ({ title, message, footer }) => {
+const Modal: React.FC<ModalProps> = ({ title, message, footer, isOpen }) => {
     return (
-        <div className='overlay'>
+        <div className='overlay' style={{ display: isOpen ? '' : 'none' }}>
             <div className='modal'>
                 <h3>{title}</h3>
                 <div>{message}</div>

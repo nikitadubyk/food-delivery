@@ -60,9 +60,23 @@ const cartSlice = createSlice({
             state.cart = state.cart.filter(obj => obj.id !== action.payload)
             state.totalPrice = getTotalPrice(state.cart)
         },
+        clearCart(state) {
+            state.cart = []
+            state.totalPrice = 0
+            state.restarautId = ''
+        },
+        clearErrorMessage(state) {
+            state.errorMessage = ''
+        },
     },
 })
 
-export const { addItemToCart, plusItem, minusItem, removeItem } =
-    cartSlice.actions
+export const {
+    addItemToCart,
+    plusItem,
+    minusItem,
+    removeItem,
+    clearCart,
+    clearErrorMessage,
+} = cartSlice.actions
 export default cartSlice.reducer

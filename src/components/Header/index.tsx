@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import debounce from 'lodash.debounce'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectorCart } from '../../redux/cart/selector'
+import { selectCart } from '../../redux/cart/selectors'
 import { changeSearch } from '../../redux/filter/filterSlice'
 import { FaShoppingCart } from 'react-icons/fa'
 
@@ -10,7 +10,7 @@ import './Header.css'
 
 const Header: React.FC = () => {
     const dispatch = useDispatch()
-    const { totalPrice } = useSelector(selectorCart)
+    const { totalPrice } = useSelector(selectCart)
     const [value, setValue] = React.useState<string>('')
 
     const onChangeSearchValue = useCallback(
