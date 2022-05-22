@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { FaAngleLeft } from 'react-icons/fa'
+import { FaAngleLeft, FaRegFrown } from 'react-icons/fa'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectorCart } from '../../redux/cart/selector'
 
 import Button from '../../components/Button'
@@ -12,11 +12,10 @@ import CartItem from '../../components/CartItem'
 import './Cart.css'
 
 const Cart: React.FC = () => {
-    const dispatch = useDispatch()
     const { cart, totalPrice } = useSelector(selectorCart)
 
     if (cart.length === 0) {
-        return <p>Корзина пустая</p>
+        return <CartEmpty />
     }
 
     return (
@@ -52,6 +51,16 @@ const Cart: React.FC = () => {
                 </div>
                 <Button className='cart__button'>Заказать</Button>
             </div>
+        </div>
+    )
+}
+
+const CartEmpty: React.FC = () => {
+    return (
+        <div className='cart__empty'>
+            <FaRegFrown size='2rem' />
+            <h3>Корзина пустая</h3>
+            <p>Для того, чтобы заказать еду, перейди на главную страницу.</p>
         </div>
     )
 }

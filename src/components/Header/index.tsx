@@ -41,7 +41,7 @@ const Header: React.FC = () => {
 
             <div className='header__wrapper'>
                 <div className='header__wrapper-cart'>
-                    <p>{totalPrice} руб.</p>
+                    <p>{totalPrice} ₽</p>
                     <Link to='/cart'>
                         <FaShoppingCart />
                     </Link>

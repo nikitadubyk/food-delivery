@@ -28,3 +28,12 @@
     padding: 1rem 2rem;
     font-size: 1rem;
 }
+
+.cart__empty {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.cart__empty p {
+    margin-top: 1rem;
+}
