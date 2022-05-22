@@ -12,3 +12,13 @@
 .button:hover {
     background-color: #0eb440;
 }
+
+.button__reverse {
+    background-color: #d4d4d4;
+    color: #000;
+}
+
+.button__reverse:hover {
+    background-color: #b8b8b8;
+    color: #000;
+}

@@ -1,0 +1,33 @@
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: 100%;
+    z-index: 10;
+}
+
+.modal {
+    background-color: #fff;
+    margin: 0 auto;
+    width: 40%;
+    padding: 2rem;
+    border-radius: 2rem;
+    z-index: 20;
+}
+
+.modal h3 {
+    font-size: 1.3rem;
+}
+
+.modal div {
+    margin-top: 1rem;
+}
+
+.modal div button:first-child {
+    margin-right: 1rem;
+}
