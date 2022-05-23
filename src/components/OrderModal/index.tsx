@@ -35,7 +35,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const onSubmit: SubmitHandler<FormValues> = data => {
         const obj = {
             ...data,
-            order: [
+            order: {
                 ...cart.map(food => {
                     return {
                         title: food.title,
@@ -43,7 +43,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                     }
                 }),
                 totalPrice,
-            ],
+            },
         }
 
         console.log(obj)
