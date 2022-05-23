@@ -2,16 +2,21 @@ import React, { useCallback } from 'react'
 import debounce from 'lodash.debounce'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectAuth } from '../../redux/auth/selectors'
 import { selectCart } from '../../redux/cart/selectors'
 import { changeSearch } from '../../redux/filter/filterSlice'
+import { logout } from '../../redux/auth/authSlice'
 import { FaShoppingCart } from 'react-icons/fa'
+
+import Button from '../Button'
 
 import './Header.css'
 
 const Header: React.FC = () => {
+    const [value, setValue] = React.useState<string>('')
     const dispatch = useDispatch()
     const { totalPrice } = useSelector(selectCart)
-    const [value, setValue] = React.useState<string>('')
+    const { auth } = useSelector(selectAuth)
 
     const onChangeSearchValue = useCallback(
         debounce((value: string) => {
@@ -47,8 +52,16 @@ const Header: React.FC = () => {
                     </Link>
                 </div>
                 <div className='header__wrapper-links'>
-                    <Link to='/singup'>Sing Up</Link>
-                    <Link to='/login'>Log In</Link>
+                    {auth ? (
+                        <>
+                            <Link to='/orders'>Мои заказы</Link>
+                            <Link to='/' onClick={() => dispatch(logout())}>
+                                Выйти
+                            </Link>
+                        </>
+                    ) : (
+                        <Link to='/login'>Войти</Link>
+                    )}
                 </div>
             </div>
         </div>

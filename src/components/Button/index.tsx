@@ -6,6 +6,7 @@ interface ButtonProps {
     className?: string
     children: string
     reverse?: boolean
+    disabled?: boolean
     type?: 'button' | 'submit'
     onClick?: () => void
 }
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({
     children,
     onClick,
     reverse = false,
+    disabled = false,
     type = 'button',
 }) => {
     return (
@@ -24,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
             }`}
             onClick={onClick}
             type={type}
+            disabled={disabled}
         >
             {children.toUpperCase()}
         </button>

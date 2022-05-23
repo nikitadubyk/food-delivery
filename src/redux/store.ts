@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import marketSlice from './market/marketSlice'
 import sliderSlice from './slider/sliderSlice'
 import filterSlice from './filter/filterSlice'
 import cartSlice from './cart/cartSlice'
+import authSlice from './auth/authSlice'
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +12,7 @@ export const store = configureStore({
         filter: filterSlice,
         sliders: sliderSlice,
         cart: cartSlice,
+        auth: authSlice,
     },
     devTools: true,
 })

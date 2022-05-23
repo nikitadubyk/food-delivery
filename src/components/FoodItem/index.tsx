@@ -1,6 +1,7 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart } from '../../redux/cart/cartSlice'
+import { selectCart } from '../../redux/cart/selectors'
 
 import Button from '../Button'
 
@@ -30,6 +31,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
     price,
 }) => {
     const dispatch = useDispatch()
+    const { cart } = useSelector(selectCart)
 
     const onAddItem = () => {
         dispatch(
@@ -65,7 +67,11 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 <div className={style.food__card__order}>
                     <p className={style.food__card__price}>{price} ₽</p>
 
-                    <Button onClick={onAddItem}>В корзину</Button>
+                    <Button onClick={onAddItem}>
+                        {cart.find(food => food.id === id)
+                            ? 'Добавить еще'
+                            : 'В корзину'}
+                    </Button>
                 </div>
             </div>
         </div>
