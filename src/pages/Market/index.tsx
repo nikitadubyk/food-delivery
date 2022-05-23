@@ -64,7 +64,7 @@ const Market: React.FC = () => {
 
                             <div className='market__header-info'>
                                 <div>
-                                    <FaCarAlt /> {filteredProduct.timeDelivery}{' '}
+                                    <FaCarAlt /> {filteredProduct.timeDelivery}
                                     мин.
                                 </div>
                                 <div>
