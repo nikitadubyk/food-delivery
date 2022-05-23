@@ -1,0 +1,38 @@
+.form__order {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__order h2 {
+    color: #0ec645;
+    text-align: center;
+}
+
+.form__order h4 {
+    margin-bottom: 0.5rem;
+}
+
+.form__order div input {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(107, 107, 107);
+    font-size: 1.3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form__order select {
+    font-size: 1.3rem;
+    width: 10rem;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+.form__order p {
+    color: rgb(194, 0, 0);
+}
+
+.form__order button {
+    font-size: 1.3rem;
+}

@@ -5,8 +5,8 @@ import './Modal.css'
 
 interface ModalProps {
     title: string
-    message: string
-    footer?: any
+    message: string | React.ReactNode
+    footer?: string | React.ReactNode
     isOpen: boolean
 }
 

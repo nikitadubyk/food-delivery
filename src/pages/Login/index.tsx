@@ -41,15 +41,21 @@ const Login: React.FC = () => {
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className='form'>
-                <input
-                    {...register('email', { required: 'Заполните это поле' })}
-                    type='email'
-                    placeholder='Ваш email'
-                />
-                {errors.email?.message && <p>{errors.email?.message}</p>}
+                <div>
+                    <h4>Почта</h4>
+                    <input
+                        {...register('email', {
+                            required: 'Заполните это поле',
+                        })}
+                        type='email'
+                        placeholder='Ваш email'
+                    />
+                    {errors.email?.message && <p>{errors.email?.message}</p>}
+                </div>
 
                 {isLoginForm && (
-                    <>
+                    <div>
+                        <h4>Имя</h4>
                         <input
                             {...register('name', {
                                 required: 'Заполните это поле',
@@ -58,21 +64,26 @@ const Login: React.FC = () => {
                             placeholder='Ваше имя'
                         />
                         {errors.name?.message && <p>{errors.name?.message}</p>}
-                    </>
+                    </div>
                 )}
 
-                <input
-                    {...register('password', {
-                        required: 'Заполните это поле',
-                        minLength: {
-                            value: 4,
-                            message: 'Минимум 4 символа',
-                        },
-                    })}
-                    type='password'
-                    placeholder='Ваш пароль'
-                />
-                {errors.password?.message && <p>{errors.password?.message}</p>}
+                <div>
+                    <h4>Пароль</h4>
+                    <input
+                        {...register('password', {
+                            required: 'Заполните это поле',
+                            minLength: {
+                                value: 4,
+                                message: 'Минимум 4 символа',
+                            },
+                        })}
+                        type='password'
+                        placeholder='Ваш пароль'
+                    />
+                    {errors.password?.message && (
+                        <p>{errors.password?.message}</p>
+                    )}
+                </div>
                 <Button type='submit'>
                     {isLoginForm ? 'Регистрация' : 'Войти'}
                 </Button>
