@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,14 +8,12 @@ import { changeSearch } from '../../redux/filter/filterSlice'
 import { logout } from '../../redux/auth/authSlice'
 import { FaShoppingCart } from 'react-icons/fa'
 
-import Button from '../Button'
-
 import './Header.css'
 
 const Header: React.FC = () => {
     const [value, setValue] = React.useState<string>('')
     const dispatch = useDispatch()
-    const { totalPrice } = useSelector(selectCart)
+    const { cart, totalPrice } = useSelector(selectCart)
     const { auth } = useSelector(selectAuth)
 
     const onChangeSearchValue = useCallback(
@@ -24,6 +22,10 @@ const Header: React.FC = () => {
         }, 400),
         []
     )
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
     const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)

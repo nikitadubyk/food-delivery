@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getCartFromLS } from '../../utils/getCartFromLS'
 import { getTotalPrice } from '../../utils/getTotalPrice'
 import { CartItemType, CartSliceState } from './types'
 
-const initialState: CartSliceState = {
-    cart: [],
-    totalPrice: 0,
-    restarautId: '',
-    errorMessage: '',
-}
+// const initialState: CartSliceState = {
+//     cart: [],
+//     totalPrice: 0,
+//     restarautId: '',
+//     errorMessage: '',
+// }
+
+const initialState: CartSliceState = getCartFromLS()
 
 const cartSlice = createSlice({
     name: 'cart',
