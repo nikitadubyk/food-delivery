@@ -17,7 +17,6 @@
 
 .card_slider {
     display: block;
-    width: 20rem;
     height: 12rem;
     border-radius: 2rem;
     cursor: pointer;
@@ -60,4 +59,22 @@
 
 .card__wrapper .card__descr svg {
     margin-right: 0.25rem;
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card_slider {
+        height: 7rem;
+    }
 }

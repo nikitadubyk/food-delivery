@@ -24,13 +24,10 @@ const Home: React.FC = () => {
                         1200: {
                             perPage: 3,
                         },
-                        640: {
+                        768: {
                             perPage: 2,
                             pagination: true,
                             arrows: true,
-                        },
-                        560: {
-                            perPage: 1,
                         },
                     },
                 }}

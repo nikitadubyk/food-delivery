@@ -20,3 +20,13 @@
     background-color: #e3e4e6;
     border-radius: 2rem;
 }
+
+@media (max-width: 768px) {
+    .food-filter {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+    .food-filter::-webkit-scrollbar {
+        width: 0;
+    }
+}

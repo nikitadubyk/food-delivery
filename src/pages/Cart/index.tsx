@@ -79,10 +79,17 @@ const Cart: React.FC = () => {
 
 const CartEmpty: React.FC = () => {
     return (
-        <div className='cart__empty'>
-            <FaRegFrown size='2rem' />
-            <h3>Корзина пустая</h3>
-            <p>Для того, чтобы заказать еду, перейди на главную страницу.</p>
+        <div className='root'>
+            <Link to='/' className='back'>
+                <FaAngleLeft /> Вернуться на главную
+            </Link>
+            <div className='cart__empty'>
+                <FaRegFrown size='2rem' />
+                <h3>Корзина пустая</h3>
+                <p>
+                    Для того, чтобы заказать еду, перейди на главную страницу.
+                </p>
+            </div>
         </div>
     )
 }

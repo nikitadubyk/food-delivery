@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -7,6 +8,7 @@ import { login } from '../../redux/auth/authSlice'
 import Button from '../../components/Button'
 
 import './Login.css'
+import { FaAngleLeft } from 'react-icons/fa'
 
 interface FormInputs {
     email: string
@@ -36,6 +38,10 @@ const Login: React.FC = () => {
 
     return (
         <div className='root'>
+            <Link to='/' className='back'>
+                <FaAngleLeft /> Вернуться на главную
+            </Link>
+
             <h2 className='form__title'>
                 {isLoginForm ? 'Регистрация' : 'Войти'}
             </h2>

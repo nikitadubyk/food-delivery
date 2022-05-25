@@ -52,3 +52,15 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width: 576px) {
+    .food__card {
+        margin: 1rem;
+    }
+    .food__card img {
+        height: 10rem;
+    }
+    .food__card__descr {
+        display: none;
+    }
+}
