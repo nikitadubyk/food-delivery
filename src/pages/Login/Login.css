@@ -47,6 +47,7 @@
     text-align: center;
     cursor: pointer;
 }
+
 @media (max-width: 768px) {
     .form {
         width: auto;
