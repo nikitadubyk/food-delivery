@@ -1,0 +1,48 @@
+.orders__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order__item {
+    width: 15rem;
+    border-radius: 2rem;
+    margin: 2rem;
+    padding: 1rem 2rem;
+    background-color: rgb(235, 235, 235);
+}
+
+.order__date {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.order__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.order__info {
+    background-color: #fff;
+    margin-bottom: 1rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+.total {
+    background-color: #0ec645;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .orders__wrapper {
+        justify-content: center;
+    }
+    .order__item {
+        width: 100%;
+        margin: 0 0 2rem 0;
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../redux/cart/selectors'
@@ -24,6 +24,7 @@ const OrderModal: React.FC<OrderModalProps> = ({
 }
 
 const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
+    const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
     const { cart } = useSelector(selectCart)
     const {
         register,
@@ -59,21 +60,25 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
             {isSubmitSuccessful && (
                 <h2>Спасибо за заказ, менеджер свяжется с вами!</h2>
             )}
-            <div>
-                <h4>Адрес</h4>
-                <input
-                    {...register('address', {
-                        required: 'Заполните это поле',
-                        minLength: {
-                            value: 6,
-                            message: 'Введите правильный адрес',
-                        },
-                    })}
-                    type='text'
-                    placeholder='Ваш адрес'
-                />
-                {errors.address?.message && <p>{errors.address?.message}</p>}
-            </div>
+            {typeDelivery === 'Доставка' && (
+                <div>
+                    <h4>Адрес</h4>
+                    <input
+                        {...register('address', {
+                            required: 'Заполните это поле',
+                            minLength: {
+                                value: 6,
+                                message: 'Введите правильный адрес',
+                            },
+                        })}
+                        type='text'
+                        placeholder='Ваш адрес'
+                    />
+                    {errors.address?.message && (
+                        <p>{errors.address?.message}</p>
+                    )}
+                </div>
+            )}
             <div>
                 <h4>Имя</h4>
                 <input
@@ -105,7 +110,10 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                 {errors.phone?.message && <p>{errors.phone?.message}</p>}
             </div>
 
-            <select {...register('delivery', { required: true })}>
+            <select
+                {...register('delivery', { required: true })}
+                onChange={e => setTypeDelivery(e.target.value)}
+            >
                 <option value='Доставка'>Доставка</option>
                 <option value='Самовывоз'>Самовывоз</option>
             </select>

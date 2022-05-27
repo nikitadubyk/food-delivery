@@ -54,6 +54,7 @@ const Home: React.FC = () => {
                         />
                     )
                 })}
+                {filteredMarket.length === 0 && <h3>Рестораны не найдены</h3>}
             </div>
         </div>
     )

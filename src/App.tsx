@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Market from './pages/Market'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
+import Orders from './pages/Orders'
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/market/:id' element={<Market />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/orders' element={<Orders />} />
                 <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>
         </>
