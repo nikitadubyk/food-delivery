@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 import { selectSlider } from '../redux/slider/selectors'
 import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../redux/hooks'
+import { fetchMarkets } from '../redux/market/marketSlice'
 import { filteredMarketSelector } from '../redux/filter/selectors'
+import { selectMarketData } from '../redux/market/selectors'
 
+import SkeletonMarket from '../components/SkeletonMarket'
 import Card from '../components/Card'
 
 import '@splidejs/splide/dist/css/splide.min.css'
@@ -12,6 +16,16 @@ import '@splidejs/splide/dist/css/splide.min.css'
 const Home: React.FC = () => {
     const { sliderImages } = useSelector(selectSlider)
     const filteredMarket = useSelector(filteredMarketSelector)
+    const { loadingStatus } = useSelector(selectMarketData)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchMarkets())
+    }, [])
+
+    const skeletons = [...new Array(6)].map((arr, index) => (
+        <SkeletonMarket key={index} />
+    ))
 
     return (
         <div className='root'>
@@ -43,6 +57,7 @@ const Home: React.FC = () => {
 
             <h2 className='home-title'>Рестораны</h2>
             <div className='cards__wrapper'>
+                {loadingStatus === 'loading' && skeletons}
                 {filteredMarket.map(market => {
                     return (
                         <Card
@@ -54,7 +69,9 @@ const Home: React.FC = () => {
                         />
                     )
                 })}
-                {filteredMarket.length === 0 && <h3>Рестораны не найдены</h3>}
+                {loadingStatus === 'error' && (
+                    <p>Упс, произошла ошибка при получении ресторанов.</p>
+                )}
             </div>
         </div>
     )

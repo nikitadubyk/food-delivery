@@ -25,7 +25,7 @@ const OrderModal: React.FC<OrderModalProps> = ({
 
 const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
-    const { cart } = useSelector(selectCart)
+    const { cart, restarautId } = useSelector(selectCart)
     const {
         register,
         handleSubmit,
@@ -36,18 +36,19 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const onSubmit: SubmitHandler<FormValues> = data => {
         const obj = {
             ...data,
-            order: {
+            order: [
                 ...cart.map(food => {
                     return {
                         title: food.title,
                         count: food.count,
                     }
                 }),
-                totalPrice,
-            },
+            ],
+            totalPrice,
+            restarautId,
         }
 
-        console.log(obj)
+        console.log(JSON.stringify(obj))
         reset()
 
         setTimeout(() => {
