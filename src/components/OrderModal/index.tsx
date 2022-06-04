@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useHttp } from '../../hook/http.hook'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCart } from '../../redux/cart/cartSlice'
 import { useNavigate } from 'react-router-dom'
@@ -32,9 +33,10 @@ const OrderModal: React.FC<OrderModalProps> = ({
 
 const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
-    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
-    const [error, setError] = useState<boolean>(false)
+
+    const { loading, error, request } = useHttp()
+
     const { cart, restarautId } = useSelector(selectCart)
     const {
         register,
@@ -47,34 +49,21 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const navigate = useNavigate()
 
     const postOrder = async (obj: PostOrderType) => {
-        try {
-            setIsLoading(true)
-            setError(false)
+        const res = await request(
+            `${process.env.REACT_APP_BACKEND_URL}/order`,
+            'POST',
+            JSON.stringify(obj)
+        )
 
-            const res = await fetch(
-                `${process.env.REACT_APP_BACKEND_URL}/order`,
-                {
-                    method: 'POST',
-                    body: JSON.stringify(obj),
-                    headers: { 'Content-Type': 'application/json' },
-                }
-            )
+        if (res) {
+            setIsSuccessful(true)
+            reset()
 
-            if (res.status === 200) {
-                setIsSuccessful(true)
-                reset()
-
-                setTimeout(() => {
-                    onClose()
-                    dispatch(clearCart())
-                    navigate('/')
-                }, 3000)
-            }
-
-            setIsLoading(false)
-        } catch (error) {
-            setIsLoading(false)
-            setError(true)
+            setTimeout(() => {
+                onClose()
+                dispatch(clearCart())
+                navigate('/')
+            }, 3000)
         }
     }
 
@@ -173,7 +162,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
 
                 <Button type='submit'>Заказать!</Button>
             </div>
-            {isLoading && <p className='loading'>Отправка...</p>}
+            {loading && <p className='loading'>Отправка...</p>}
         </form>
     )
 }
