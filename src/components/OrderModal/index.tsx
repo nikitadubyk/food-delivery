@@ -14,6 +14,7 @@ import {
 
 import Modal from '../Modal'
 import Button from '../Button'
+import Spinner from '../Spinner'
 
 import './OrderModal.css'
 
@@ -162,7 +163,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
 
                 <Button type='submit'>Заказать!</Button>
             </div>
-            {loading && <p className='loading'>Отправка...</p>}
+            {loading && <Spinner width={50} height={50} />}
         </form>
     )
 }
