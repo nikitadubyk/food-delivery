@@ -22,10 +22,8 @@ const marketSlice = createSlice({
     name: 'market',
     initialState,
     reducers: {
-        getCurrectMarket(state, action: PayloadAction<string | undefined>) {
-            state.correctMarket = state.market.find(
-                market => market.id === action.payload
-            )
+        setCorrectMarket(state, action: PayloadAction<MarketType | null>) {
+            state.correctMarket = action.payload
         },
     },
     extraReducers: builder => {
@@ -46,5 +44,5 @@ const marketSlice = createSlice({
     },
 })
 
-export const { getCurrectMarket } = marketSlice.actions
+export const { setCorrectMarket } = marketSlice.actions
 export default marketSlice.reducer

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHttp } from '../../hook/http.hook'
 
 import { clearCart, clearErrorMessage } from '../../redux/cart/cartSlice'
-import { getCurrectMarket } from '../../redux/market/marketSlice'
+import { setCorrectMarket } from '../../redux/market/marketSlice'
 import { changeActiveFilter } from '../../redux/filter/filterSlice'
 
 import { selectCart } from '../../redux/cart/selectors'
@@ -16,12 +17,15 @@ import FoodFilter from '../../components/FoodFilter'
 
 import { FaAngleLeft, FaCarAlt, FaRegFrown } from 'react-icons/fa'
 import './Market.css'
+import Spinner from '../../components/Spinner'
 
 const Market: React.FC = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const filteredProduct = useSelector(filteredProductSelector)
     const { errorMessage } = useSelector(selectCart)
+
+    const { request, loading, error } = useHttp()
 
     const closeModalHandler = () => dispatch(clearErrorMessage())
     const clearCartHandler = () => {
@@ -30,9 +34,13 @@ const Market: React.FC = () => {
     }
 
     useEffect(() => {
-        dispatch(getCurrectMarket(id))
+        dispatch(setCorrectMarket(null))
+        const fetchMarket = async () =>
+            await request(`${process.env.REACT_APP_BACKEND_URL}/market/${id}`)
+
+        fetchMarket().then(result => dispatch(setCorrectMarket(result)))
         dispatch(changeActiveFilter('Все'))
-    }, [id, dispatch])
+    }, [id])
 
     return (
         <>
@@ -57,6 +65,7 @@ const Market: React.FC = () => {
                 <Link to='/' className='back'>
                     <FaAngleLeft /> Вернуться на главную
                 </Link>
+                {loading && <Spinner />}
                 {filteredProduct && (
                     <>
                         <div className='market__header'>
@@ -103,10 +112,12 @@ const Market: React.FC = () => {
                         </div>
                     </>
                 )}
-                {!filteredProduct && (
+                {error && (
                     <div className='market__food-error'>
                         <FaRegFrown size='2rem' />
-                        <p>Упс, ресторан не найден</p>
+                        <p>
+                            Упс, произошла ошибка, возможно не найден ресторан
+                        </p>
                     </div>
                 )}
             </div>
