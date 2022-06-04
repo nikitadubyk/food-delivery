@@ -8,7 +8,7 @@ import { fetchMarkets } from '../redux/market/marketSlice'
 import { filteredMarketSelector } from '../redux/filter/selectors'
 import { selectMarketData } from '../redux/market/selectors'
 
-import SkeletonMarket from '../components/SkeletonMarket'
+import SkeletonMarket from '../components/Card/SkeletonMarket'
 import Card from '../components/Card'
 
 import '@splidejs/splide/dist/css/splide.min.css'

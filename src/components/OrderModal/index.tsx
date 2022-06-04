@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { clearCart } from '../../redux/cart/cartSlice'
+import { useNavigate } from 'react-router-dom'
 import { selectCart } from '../../redux/cart/selectors'
-import { FormValues, ModalViewProps, OrderModalProps } from './types'
+import {
+    FormValues,
+    ModalViewProps,
+    OrderModalProps,
+    PostOrderType,
+} from './types'
 
 import Modal from '../Modal'
 import Button from '../Button'
@@ -25,15 +32,53 @@ const OrderModal: React.FC<OrderModalProps> = ({
 
 const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
     const { cart, restarautId } = useSelector(selectCart)
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitSuccessful },
+        formState: { errors },
         reset,
     } = useForm<FormValues>()
 
-    const onSubmit: SubmitHandler<FormValues> = data => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const postOrder = async (obj: PostOrderType) => {
+        try {
+            setIsLoading(true)
+            setError(false)
+
+            const res = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/order`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(obj),
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            )
+
+            if (res.status === 200) {
+                setIsSuccessful(true)
+                reset()
+
+                setTimeout(() => {
+                    onClose()
+                    dispatch(clearCart())
+                    navigate('/')
+                }, 3000)
+            }
+
+            setIsLoading(false)
+        } catch (error) {
+            setIsLoading(false)
+            setError(true)
+        }
+    }
+
+    const onSubmit: SubmitHandler<FormValues> = async data => {
         const obj = {
             ...data,
             order: [
@@ -46,20 +91,21 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
             ],
             totalPrice,
             restarautId,
+            userId: '628f47b2c07f1ff1e075a045',
         }
 
-        console.log(JSON.stringify(obj))
-        reset()
-
-        setTimeout(() => {
-            onClose()
-        }, 3000)
+        postOrder(obj)
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form__order'>
-            {isSubmitSuccessful && (
+            {isSuccessful && (
                 <h2>Спасибо за заказ, менеджер свяжется с вами!</h2>
+            )}
+            {error && (
+                <h2 className='error__message'>
+                    Упс, произошла ошибка, попробуйте еще!
+                </h2>
             )}
             {typeDelivery === 'Доставка' && (
                 <div>
@@ -127,6 +173,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
 
                 <Button type='submit'>Заказать!</Button>
             </div>
+            {isLoading && <p className='loading'>Отправка...</p>}
         </form>
     )
 }

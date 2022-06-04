@@ -14,5 +14,15 @@ export interface FormValues {
     phone: string
     delivery: 'Самовывоз' | 'Доставка'
     address?: string
-    comment?: string
+}
+
+export interface PostOrderType {
+    name: string
+    phone: string
+    delivery: 'Самовывоз' | 'Доставка'
+    address?: string
+    order: { title: string; count: number }[]
+    totalPrice: number
+    restarautId: string | undefined
+    userId: string
 }

@@ -29,6 +29,18 @@
     margin: 1rem 0;
 }
 
+.form__order .error__message {
+    font-size: 1.3rem;
+    color: rgb(194, 0, 0);
+    text-align: center;
+}
+
+.form__order .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
 .form__order p {
     color: rgb(194, 0, 0);
 }

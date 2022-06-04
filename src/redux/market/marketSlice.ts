@@ -14,7 +14,7 @@ const initialState: MarketSliceState = {
 }
 
 export const fetchMarkets = createAsyncThunk('/api/market', async () => {
-    const res = await fetch('http://localhost:5000/api/market')
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/market`)
     return await res.json()
 })
 
