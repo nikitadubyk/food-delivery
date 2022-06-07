@@ -76,6 +76,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                     return {
                         title: food.title,
                         count: food.count,
+                        price: food.price,
                     }
                 }),
             ],

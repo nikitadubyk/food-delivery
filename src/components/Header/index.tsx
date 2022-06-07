@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     const [value, setValue] = React.useState<string>('')
     const dispatch = useDispatch()
     const { cart, totalPrice } = useSelector(selectCart)
-    const { auth } = useSelector(selectAuth)
+    const { isLogin } = useSelector(selectAuth)
 
     const onChangeSearchValue = useCallback(
         debounce((value: string) => {
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
                     </Link>
                 </div>
                 <div className='header__wrapper-links'>
-                    {auth ? (
+                    {isLogin ? (
                         <>
                             <Link to='/orders'>Мои заказы</Link>
                             <Link to='/' onClick={() => dispatch(logout())}>

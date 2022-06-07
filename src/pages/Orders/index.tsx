@@ -1,56 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaAngleLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
+import { useAppDispatch } from '../../redux/hooks'
+import { useSelector } from 'react-redux'
+import { fetchOrders } from '../../redux/orders/ordersSlice'
+import { selectOrders } from '../../redux/orders/selector'
+
+import Spinner from '../../components/Spinner'
+import OrderItem from '../../components/OrderItem'
+
 import './Orders.css'
 
-const DUMMY_ORDERS = [
-    {
-        marketName: 'Крутое заведение',
-        date: new Date().toLocaleDateString(),
-        order: [
-            {
-                title: 'Роллы вкусные',
-                price: 1999,
-                count: 6,
-            },
-            {
-                title: 'Пицца вкусная',
-                price: 399,
-                count: 1,
-            },
-            {
-                title: 'Бургер какой-то',
-                price: 450,
-                count: 1,
-            },
-        ],
-    },
-
-    {
-        marketName: 'Лучшее заведение',
-        date: new Date().toLocaleDateString(),
-        order: [
-            {
-                title: 'Роллы вкусные',
-                price: 1999,
-                count: 6,
-            },
-            {
-                title: 'Пицца вкусная',
-                price: 399,
-                count: 1,
-            },
-            {
-                title: 'Бургер какой-то',
-                price: 450,
-                count: 1,
-            },
-        ],
-    },
-]
-
 const Orders: React.FC = () => {
+    const dispatch = useAppDispatch()
+    const { loadingStatus, orders } = useSelector(selectOrders)
+
+    useEffect(() => {
+        dispatch(fetchOrders('628f47b2c07f1ff1e075a045'))
+    }, [])
+
     return (
         <div className='root'>
             <Link to='/' className='back'>
@@ -59,34 +28,29 @@ const Orders: React.FC = () => {
             <h2>Мои заказы</h2>
 
             <div className='orders__wrapper'>
-                {DUMMY_ORDERS.map(orders => (
-                    <div className='order__item'>
-                        <h3>{orders.marketName}</h3>
-                        <div className='order__date'>
-                            Дата заказа: {orders.date}
-                        </div>
-                        <div className='order__wrapper'>
-                            {orders.order.map(order => (
-                                <div className='order__info'>
-                                    <div>
-                                        <b>{order.title}</b>
-                                    </div>
-                                    <div>Количество: {order.count}</div>
-                                    <div>Цена: {order.price} ₽</div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className='total'>
-                            Итого:{' '}
-                            {orders.order.reduce(
-                                (sum, obj) => obj.price + sum,
-                                0
-                            )}{' '}
-                            ₽
-                        </div>
-                    </div>
-                ))}
+                {loadingStatus === 'loading' && <Spinner />}
+                {loadingStatus === 'error' && (
+                    <p>
+                        Упс, произошла ошибка при загрузке заказов. Попробуйте
+                        позже
+                    </p>
+                )}
+                {orders?.orders.length === 0 && (
+                    <p>
+                        Заказов нет, похоже вы ничего не заказывали. Для заказа
+                        перейдите на главную страницу
+                    </p>
+                )}
+                {orders &&
+                    orders.orders.map((orders, i) => (
+                        <OrderItem
+                            key={i}
+                            date={orders.date}
+                            order={orders.order}
+                            restarautName={orders.restarautName}
+                            totalPrice={orders.totalPrice}
+                        />
+                    ))}
             </div>
         </div>
     )

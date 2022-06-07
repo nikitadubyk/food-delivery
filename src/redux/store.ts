@@ -5,6 +5,7 @@ import sliderSlice from './slider/sliderSlice'
 import filterSlice from './filter/filterSlice'
 import cartSlice from './cart/cartSlice'
 import authSlice from './auth/authSlice'
+import ordersSlice from './orders/ordersSlice'
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         sliders: sliderSlice,
         cart: cartSlice,
         auth: authSlice,
+        orders: ordersSlice,
     },
     devTools: true,
 })
