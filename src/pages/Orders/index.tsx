@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../redux/hooks'
 import { useSelector } from 'react-redux'
 import { fetchOrders } from '../../redux/orders/ordersSlice'
 import { selectOrders } from '../../redux/orders/selector'
+import { selectAuth } from '../../redux/auth/selectors'
 
 import Spinner from '../../components/Spinner'
 import OrderItem from '../../components/OrderItem'
@@ -15,9 +16,10 @@ import './Orders.css'
 const Orders: React.FC = () => {
     const dispatch = useAppDispatch()
     const { loadingStatus, orders } = useSelector(selectOrders)
+    const { userId } = useSelector(selectAuth)
 
     useEffect(() => {
-        dispatch(fetchOrders('628f47b2c07f1ff1e075a045'))
+        dispatch(fetchOrders(userId))
     }, [])
 
     return (
@@ -35,7 +37,7 @@ const Orders: React.FC = () => {
                         позже
                     </p>
                 )}
-                {orders?.orders.length === 0 && (
+                {loadingStatus !== 'loading' && orders?.orders.length === 0 && (
                     <p>
                         Заказов нет, похоже вы ничего не заказывали. Для заказа
                         перейдите на главную страницу

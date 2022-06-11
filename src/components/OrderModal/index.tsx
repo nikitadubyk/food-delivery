@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { clearCart } from '../../redux/cart/cartSlice'
 import { useNavigate } from 'react-router-dom'
 import { selectCart } from '../../redux/cart/selectors'
+import { selectAuth } from '../../redux/auth/selectors'
 import {
     FormValues,
     ModalViewProps,
@@ -39,6 +40,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const { loading, error, request } = useHttp()
 
     const { cart, restarautId } = useSelector(selectCart)
+    const { userId } = useSelector(selectAuth)
     const {
         register,
         handleSubmit,
@@ -82,7 +84,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
             ],
             totalPrice,
             restarautId,
-            userId: '628f47b2c07f1ff1e075a045',
+            userId,
         }
 
         postOrder(obj)

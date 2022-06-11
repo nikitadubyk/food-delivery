@@ -1,22 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface AuthState {
-    isLogin: boolean
+    token: string | null
+    userId: string | null
 }
 
 const initialState: AuthState = {
-    isLogin: true,
+    token: null,
+    userId: null,
 }
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login: state => {
-            state.isLogin = true
+        login: (state, action) => {
+            state.token = action.payload.token
+            state.userId = action.payload.userId
+
+            const tokenExpiration = new Date().getTime() * 1000 * 60 * 60 * 5
+
+            localStorage.setItem(
+                'userData',
+                JSON.stringify({
+                    token: state.token,
+                    userId: state.userId,
+                    expiration: tokenExpiration,
+                })
+            )
         },
         logout: state => {
-            state.isLogin = false
+            state.token = null
+            state.userId = null
+            localStorage.removeItem('userData')
         },
     },
 })

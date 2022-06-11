@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectAuth } from './redux/auth/selectors'
+import { useAuth } from './hook/auth.hook'
 
 import Header from './components/Header'
 import Home from './pages/Home'
@@ -11,7 +10,7 @@ import Login from './pages/Login'
 import Orders from './pages/Orders'
 
 function App() {
-    const { isLogin } = useSelector(selectAuth)
+    const { token } = useAuth()
 
     return (
         <>
@@ -21,7 +20,7 @@ function App() {
                 <Route path='/market/:id' element={<Market />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/login' element={<Login />} />
-                {isLogin && <Route path='/orders' element={<Orders />} />}
+                {token && <Route path='/orders' element={<Orders />} />}
                 <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>
         </>

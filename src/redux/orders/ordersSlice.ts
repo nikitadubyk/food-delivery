@@ -13,7 +13,7 @@ const initialState: OrdersState = {
 
 export const fetchOrders = createAsyncThunk(
     '/api/orders',
-    async (userId: string) => {
+    async (userId: string | null) => {
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
             method: 'POST',
             body: JSON.stringify({ userId }),

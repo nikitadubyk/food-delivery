@@ -17,11 +17,11 @@ import './Cart.css'
 const Cart: React.FC = () => {
     const [orderModal, setOrderModal] = useState<boolean>(false)
     const { cart, totalPrice } = useSelector(selectCart)
-    const { isLogin } = useSelector(selectAuth)
+    const { token } = useSelector(selectAuth)
     const navigate = useNavigate()
 
     const openOrderModal = () => {
-        !isLogin && navigate('/login')
+        !token && navigate('/login')
         setOrderModal(true)
     }
 

@@ -4,11 +4,13 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/auth/authSlice'
+import { useHttp } from '../../hook/http.hook'
 
 import Button from '../../components/Button'
+import Spinner from '../../components/Spinner'
 
-import './Login.css'
 import { FaAngleLeft } from 'react-icons/fa'
+import './Login.css'
 
 interface FormInputs {
     email: string
@@ -24,14 +26,47 @@ const Login: React.FC = () => {
         formState: { errors },
         reset,
     } = useForm<FormInputs>()
+    const { loading, error, request } = useHttp()
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const onSubmit: SubmitHandler<FormInputs> = data => {
-        console.log(data)
-        reset()
-        dispatch(login())
-        navigate('/')
+    const onSubmit: SubmitHandler<FormInputs> = async data => {
+        if (isLoginForm) {
+            const res = await request(
+                `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
+                'POST',
+                JSON.stringify(data)
+            )
+
+            dispatch(
+                login({
+                    token: res.token,
+                    userId: res.userId,
+                })
+            )
+
+            if (res.token && res.userId) {
+                reset()
+                navigate('/')
+            }
+        } else {
+            const res = await request(
+                `${process.env.REACT_APP_BACKEND_URL}/users/login`,
+                'POST',
+                JSON.stringify(data)
+            )
+            dispatch(
+                login({
+                    token: res.token,
+                    userId: res.userId,
+                })
+            )
+
+            if (res.token && res.userId) {
+                reset()
+                navigate('/')
+            }
+        }
     }
 
     const switchForm = () => setIsLoginForm(prevState => !prevState)
@@ -45,6 +80,8 @@ const Login: React.FC = () => {
             <h2 className='form__title'>
                 {isLoginForm ? 'Регистрация' : 'Войти'}
             </h2>
+
+            {error && <p className='form__error'>{error}</p>}
 
             <form onSubmit={handleSubmit(onSubmit)} className='form'>
                 <div>
@@ -100,6 +137,7 @@ const Login: React.FC = () => {
                         : 'У меня нет аккаунта'}
                 </div>
             </form>
+            {loading && <Spinner width={50} height={50} />}
         </div>
     )
 }
