@@ -8,6 +8,7 @@ import { useHttp } from '../../hook/http.hook'
 
 import Button from '../../components/Button'
 import Spinner from '../../components/Spinner'
+import Layout from '../../components/Layout'
 
 import { FaAngleLeft } from 'react-icons/fa'
 import './Login.css'
@@ -72,73 +73,82 @@ const Login: React.FC = () => {
     const switchForm = () => setIsLoginForm(prevState => !prevState)
 
     return (
-        <div className='root'>
-            <Link to='/' className='back'>
-                <FaAngleLeft /> Вернуться на главную
-            </Link>
+        <Layout
+            title={isLoginForm ? 'Регистрация' : 'Вход'}
+            content='Страница регистрации аккаунта или входа'
+        >
+            <div className='root'>
+                <Link to='/' className='back'>
+                    <FaAngleLeft /> Вернуться на главную
+                </Link>
 
-            <h2 className='form__title'>
-                {isLoginForm ? 'Регистрация' : 'Войти'}
-            </h2>
+                <h2 className='form__title'>
+                    {isLoginForm ? 'Регистрация' : 'Войти'}
+                </h2>
 
-            {error && <p className='form__error'>{error}</p>}
+                {error && <p className='form__error'>{error}</p>}
 
-            <form onSubmit={handleSubmit(onSubmit)} className='form'>
-                <div>
-                    <h4>Почта</h4>
-                    <input
-                        {...register('email', {
-                            required: 'Заполните это поле',
-                        })}
-                        type='email'
-                        placeholder='Ваш email'
-                    />
-                    {errors.email?.message && <p>{errors.email?.message}</p>}
-                </div>
-
-                {isLoginForm && (
+                <form onSubmit={handleSubmit(onSubmit)} className='form'>
                     <div>
-                        <h4>Имя</h4>
+                        <h4>Почта</h4>
                         <input
-                            {...register('name', {
+                            {...register('email', {
                                 required: 'Заполните это поле',
                             })}
-                            type='text'
-                            placeholder='Ваше имя'
+                            type='email'
+                            placeholder='Ваш email'
                         />
-                        {errors.name?.message && <p>{errors.name?.message}</p>}
+                        {errors.email?.message && (
+                            <p>{errors.email?.message}</p>
+                        )}
                     </div>
-                )}
 
-                <div>
-                    <h4>Пароль</h4>
-                    <input
-                        {...register('password', {
-                            required: 'Заполните это поле',
-                            minLength: {
-                                value: 4,
-                                message: 'Минимум 4 символа',
-                            },
-                        })}
-                        type='password'
-                        placeholder='Ваш пароль'
-                    />
-                    {errors.password?.message && (
-                        <p>{errors.password?.message}</p>
+                    {isLoginForm && (
+                        <div>
+                            <h4>Имя</h4>
+                            <input
+                                {...register('name', {
+                                    required: 'Заполните это поле',
+                                })}
+                                type='text'
+                                placeholder='Ваше имя'
+                            />
+                            {errors.name?.message && (
+                                <p>{errors.name?.message}</p>
+                            )}
+                        </div>
                     )}
-                </div>
-                <Button type='submit'>
-                    {isLoginForm ? 'Регистрация' : 'Войти'}
-                </Button>
 
-                <div className='form__switch' onClick={switchForm}>
-                    {isLoginForm
-                        ? 'Перейти во вкладку вход'
-                        : 'У меня нет аккаунта'}
-                </div>
-            </form>
-            {loading && <Spinner width={50} height={50} />}
-        </div>
+                    <div>
+                        <h4>Пароль</h4>
+                        <input
+                            {...register('password', {
+                                required: 'Заполните это поле',
+                                minLength: {
+                                    value: 4,
+                                    message: 'Минимум 4 символа',
+                                },
+                            })}
+                            type='password'
+                            placeholder='Ваш пароль'
+                        />
+                        {errors.password?.message && (
+                            <p>{errors.password?.message}</p>
+                        )}
+                    </div>
+                    <Button type='submit'>
+                        {isLoginForm ? 'Регистрация' : 'Войти'}
+                    </Button>
+
+                    <div className='form__switch' onClick={switchForm}>
+                        {isLoginForm
+                            ? 'Перейти во вкладку вход'
+                            : 'У меня нет аккаунта'}
+                    </div>
+                </form>
+                {loading && <Spinner width={50} height={50} />}
+            </div>
+        </Layout>
     )
 }
 

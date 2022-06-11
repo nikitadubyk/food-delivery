@@ -15,6 +15,7 @@ import Button from '../../components/Button'
 import FoodItem from '../../components/FoodItem'
 import FoodFilter from '../../components/FoodFilter'
 import Spinner from '../../components/Spinner'
+import Layout from '../../components/Layout'
 
 import { FaAngleLeft, FaCarAlt, FaRegFrown } from 'react-icons/fa'
 import './Market.css'
@@ -43,7 +44,10 @@ const Market: React.FC = () => {
     }, [id])
 
     return (
-        <>
+        <Layout
+            title={filteredProduct ? filteredProduct.name : 'Ресторан'}
+            content={`Страница с едой ресторана ${filteredProduct?.name}`}
+        >
             <Modal
                 isOpen={!!errorMessage}
                 title='Очистить корзину?'
@@ -121,7 +125,7 @@ const Market: React.FC = () => {
                     </div>
                 )}
             </div>
-        </>
+        </Layout>
     )
 }
 

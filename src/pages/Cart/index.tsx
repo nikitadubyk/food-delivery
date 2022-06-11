@@ -11,6 +11,7 @@ import { selectAuth } from '../../redux/auth/selectors'
 import Button from '../../components/Button'
 import CartItem from '../../components/CartItem'
 import OrderModal from '../../components/OrderModal'
+import Layout from '../../components/Layout'
 
 import './Cart.css'
 
@@ -32,7 +33,7 @@ const Cart: React.FC = () => {
     }
 
     return (
-        <>
+        <Layout title='Корзина' content='Корзина с товарами'>
             <OrderModal
                 isOpen={orderModal}
                 onClose={closeOrderModal}
@@ -73,24 +74,27 @@ const Cart: React.FC = () => {
                     </Button>
                 </div>
             </div>
-        </>
+        </Layout>
     )
 }
 
 const CartEmpty: React.FC = () => {
     return (
-        <div className='root'>
-            <Link to='/' className='back'>
-                <FaAngleLeft /> Вернуться на главную
-            </Link>
-            <div className='cart__empty'>
-                <FaRegFrown size='2rem' />
-                <h3>Корзина пустая</h3>
-                <p>
-                    Для того, чтобы заказать еду, перейди на главную страницу.
-                </p>
+        <Layout title='Корзина пустая' content='Корзина пустая без товаров'>
+            <div className='root'>
+                <Link to='/' className='back'>
+                    <FaAngleLeft /> Вернуться на главную
+                </Link>
+                <div className='cart__empty'>
+                    <FaRegFrown size='2rem' />
+                    <h3>Корзина пустая</h3>
+                    <p>
+                        Для того, чтобы заказать еду, перейди на главную
+                        страницу.
+                    </p>
+                </div>
             </div>
-        </div>
+        </Layout>
     )
 }
 
