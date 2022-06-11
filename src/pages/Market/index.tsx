@@ -14,10 +14,10 @@ import Modal from '../../components/Modal'
 import Button from '../../components/Button'
 import FoodItem from '../../components/FoodItem'
 import FoodFilter from '../../components/FoodFilter'
+import Spinner from '../../components/Spinner'
 
 import { FaAngleLeft, FaCarAlt, FaRegFrown } from 'react-icons/fa'
 import './Market.css'
-import Spinner from '../../components/Spinner'
 
 const Market: React.FC = () => {
     const { id } = useParams()

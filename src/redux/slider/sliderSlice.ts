@@ -3,33 +3,31 @@ import { ImageData } from './types'
 
 interface SliderImages {
     sliderImages: ImageData[]
-    loadingStatus: 'idle' | 'loading' | 'error'
 }
 
 const initialState: SliderImages = {
     sliderImages: [
         {
             image: 'https://1place.su/ru/blog/wp-content/uploads/2019/05/post79.jpg',
-            url: '1',
+            url: '629748eb79e162cbc73c7639',
         },
         {
             image: 'https://moskva-rest.ru/wp-content/uploads/2020/01/aktsii2020-1.jpg',
-            url: '2',
+            url: '6297497979e162cbc73c7642',
         },
         {
             image: 'https://restorannews.ru/upload/iblock/4c8/540-Skidki-RestoranNews-01.jpg',
-            url: '3',
+            url: '629748eb79e162cbc73c7639',
         },
         {
             image: 'https://1place.su/ru/blog/wp-content/uploads/2019/05/diskont-20-1.jpg',
-            url: '4',
+            url: '6297497979e162cbc73c7642',
         },
         {
             image: 'http://resto-zametki.com.ua/images/uploads/images2013_1/123_1.jpg',
-            url: '5',
+            url: '629748eb79e162cbc73c7639',
         },
     ],
-    loadingStatus: 'idle',
 }
 
 const sliderSlice = createSlice({
@@ -38,5 +36,4 @@ const sliderSlice = createSlice({
     reducers: {},
 })
 
-export const {} = sliderSlice.actions
 export default sliderSlice.reducer
