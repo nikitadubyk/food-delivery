@@ -31,8 +31,8 @@ const Orders: React.FC = () => {
                 </Link>
                 <h2>Мои заказы</h2>
 
+                {loadingStatus === 'loading' && <Spinner />}
                 <div className='orders__wrapper'>
-                    {loadingStatus === 'loading' && <Spinner />}
                     {loadingStatus === 'error' && (
                         <p>
                             Упс, произошла ошибка при загрузке заказов.
@@ -46,7 +46,8 @@ const Orders: React.FC = () => {
                                 заказа перейдите на главную страницу
                             </p>
                         )}
-                    {orders &&
+                    {loadingStatus !== 'loading' &&
+                        orders &&
                         orders.orders.map((orders, i) => (
                             <OrderItem
                                 key={i}
