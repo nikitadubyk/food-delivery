@@ -7,6 +7,7 @@ import { useAppDispatch } from '../redux/hooks'
 import { fetchMarkets } from '../redux/market/marketSlice'
 import { filteredMarketSelector } from '../redux/filter/selectors'
 import { selectMarketData } from '../redux/market/selectors'
+import { selectFilter } from '../redux/filter/selectors'
 
 import SkeletonMarket from '../components/Card/SkeletonMarket'
 import Card from '../components/Card'
@@ -15,10 +16,11 @@ import Layout from '../components/Layout'
 import '@splidejs/splide/dist/css/splide.min.css'
 
 const Home: React.FC = () => {
-    const { sliderImages } = useSelector(selectSlider)
-    const filteredMarket = useSelector(filteredMarketSelector)
     const { loadingStatus } = useSelector(selectMarketData)
+    const { search } = useSelector(selectFilter)
+    const { sliderImages } = useSelector(selectSlider)
     const dispatch = useAppDispatch()
+    const filteredMarket = useSelector(filteredMarketSelector)
 
     useEffect(() => {
         dispatch(fetchMarkets())
@@ -80,6 +82,9 @@ const Home: React.FC = () => {
                     })}
                     {loadingStatus === 'error' && (
                         <p>Упс, произошла ошибка при получении ресторанов.</p>
+                    )}
+                    {search.length > 0 && filteredMarket.length === 0 && (
+                        <p>Не удалось найти указанный ресторан</p>
                     )}
                 </div>
             </div>
