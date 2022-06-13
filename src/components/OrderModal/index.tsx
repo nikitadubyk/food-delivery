@@ -16,6 +16,7 @@ import {
 import Modal from '../Modal'
 import Button from '../Button'
 import Spinner from '../Spinner'
+import InputMask from 'react-input-mask'
 
 import './OrderModal.css'
 
@@ -136,7 +137,9 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
             </div>
             <div>
                 <h4>Телефон</h4>
-                <input
+                <InputMask
+                    mask='+380 71 99 99 999'
+                    alwaysShowMask={true}
                     {...register('phone', {
                         required: 'Заполните это поле',
                         minLength: {
