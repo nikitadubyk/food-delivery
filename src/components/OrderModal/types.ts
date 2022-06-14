@@ -24,5 +24,4 @@ export interface PostOrderType {
     order: { title: string; count: number }[]
     totalPrice: number
     restarautId: string | undefined
-    userId: string | null
 }

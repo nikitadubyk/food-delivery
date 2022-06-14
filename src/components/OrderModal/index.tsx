@@ -41,7 +41,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     const { loading, error, request } = useHttp()
 
     const { cart, restarautId } = useSelector(selectCart)
-    const { userId } = useSelector(selectAuth)
+    const { token } = useSelector(selectAuth)
     const {
         register,
         handleSubmit,
@@ -56,7 +56,11 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
         const res = await request(
             `${process.env.REACT_APP_BACKEND_URL}/order`,
             'POST',
-            JSON.stringify(obj)
+            JSON.stringify(obj),
+            {
+                Authorization: 'Barear ' + token,
+                'Content-Type': 'application/json',
+            }
         )
 
         if (res) {
@@ -85,7 +89,6 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
             ],
             totalPrice,
             restarautId,
-            userId,
         }
 
         postOrder(obj)

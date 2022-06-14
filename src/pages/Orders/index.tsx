@@ -17,10 +17,10 @@ import './Orders.css'
 const Orders: React.FC = () => {
     const dispatch = useAppDispatch()
     const { loadingStatus, orders } = useSelector(selectOrders)
-    const { userId } = useSelector(selectAuth)
+    const { token } = useSelector(selectAuth)
 
     useEffect(() => {
-        dispatch(fetchOrders(userId))
+        dispatch(fetchOrders(token))
     }, [])
 
     return (

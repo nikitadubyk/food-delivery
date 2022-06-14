@@ -13,11 +13,11 @@ const initialState: OrdersState = {
 
 export const fetchOrders = createAsyncThunk(
     '/api/orders',
-    async (userId: string | null) => {
+    async (token: string | null) => {
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
             method: 'POST',
-            body: JSON.stringify({ userId }),
-            headers: { 'Content-Type': 'application/json' },
+            body: null,
+            headers: { Authorization: 'Barear ' + token },
         })
 
         return res.json()

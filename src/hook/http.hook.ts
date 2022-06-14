@@ -9,7 +9,7 @@ export const useHttp = () => {
             url: string,
             method = 'GET',
             body: string | null = null,
-            headers = { 'Content-Type': 'application/json' }
+            headers: any = { 'Content-Type': 'application/json' }
         ) => {
             setError(null)
             setLoading(true)

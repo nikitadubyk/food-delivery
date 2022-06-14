@@ -32,7 +32,6 @@ export const filteredMarketSelector = createSelector(
             const filteredMarket = market.filter(market =>
                 market.name?.toLowerCase().includes(search.toLowerCase())
             )
-            console.log(filteredMarket, search)
             return filteredMarket
         }
     }
