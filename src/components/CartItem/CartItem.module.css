@@ -7,11 +7,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     width: 70%;
     padding: 1rem;
     border-radius: 2rem;
     margin: 0 auto 2rem auto;
     background-color: #f6f6f6;
+}
+
+.cart__item__wrapper {
+    display: flex;
+    width: 13rem;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .cart__item img {
@@ -77,9 +85,14 @@
     }
 }
 
-@media (max-width: 768px) {
-    .cart__descr {
-        width: auto;
+@media (max-width: 658px) {
+    .cart__item {
+        flex-direction: column;
+    }
+    .cart__wrapper {
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 1rem;
     }
 }
 

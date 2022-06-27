@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    padding: 0 1rem;
 }
 
 .food-filter_item {
-    margin: 0 0.5rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: all 0.3s;

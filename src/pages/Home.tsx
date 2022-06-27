@@ -50,6 +50,11 @@ const Home: React.FC = () => {
                                 pagination: true,
                                 arrows: true,
                             },
+                            568: {
+                                perPage: 2,
+                                autoWidth: true,
+                                focus: 'center',
+                            },
                         },
                     }}
                 >

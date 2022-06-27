@@ -67,14 +67,12 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .card {
         width: 100%;
     }
-}
-
-@media (max-width: 576px) {
     .card_slider {
-        height: 7rem;
+        height: 10rem;
+        width: 12rem;
     }
 }

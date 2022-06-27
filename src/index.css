@@ -63,5 +63,6 @@ code {
 @media (max-width: 576px) {
     .home-title {
         font-size: 2rem;
+        margin-bottom: 0;
     }
 }

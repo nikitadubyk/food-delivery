@@ -41,29 +41,31 @@ const CartItem: React.FC<CartItemProps> = ({
                 </div>
             </div>
 
-            <div className={style.cart__item__count}>
-                <button
-                    className={style.cart__item__button}
-                    onClick={() => onMunisItem(id)}
-                >
-                    <FaMinus />
-                </button>
-                <div>{count}</div>
-                <button
-                    className={style.cart__item__button}
-                    onClick={() => onAddItem(id)}
-                >
-                    <FaPlus />
-                </button>
-            </div>
+            <div className={style.cart__item__wrapper}>
+                <div className={style.cart__item__count}>
+                    <button
+                        className={style.cart__item__button}
+                        onClick={() => onMunisItem(id)}
+                    >
+                        <FaMinus />
+                    </button>
+                    <div>{count}</div>
+                    <button
+                        className={style.cart__item__button}
+                        onClick={() => onAddItem(id)}
+                    >
+                        <FaPlus />
+                    </button>
+                </div>
 
-            <div className={style.cart__price}>{price * count} ₽</div>
+                <div className={style.cart__price}>{price * count} ₽</div>
 
-            <div
-                className={style.cart__delete}
-                onClick={() => onDeleteItem(id)}
-            >
-                &#10010;
+                <div
+                    className={style.cart__delete}
+                    onClick={() => onDeleteItem(id)}
+                >
+                    &#10010;
+                </div>
             </div>
         </div>
     )

@@ -51,6 +51,7 @@
 
 @media (max-width: 768px) {
     .modal {
+        padding: 1rem;
         width: 80%;
     }
 }

@@ -7,6 +7,8 @@ import { selectCart } from '../../redux/cart/selectors'
 import { changeSearch } from '../../redux/filter/filterSlice'
 import { logout } from '../../redux/auth/authSlice'
 import { FaShoppingCart } from 'react-icons/fa'
+import { FiTruck } from 'react-icons/fi'
+import { GrLogout, GrLogin } from 'react-icons/gr'
 
 import './Header.css'
 
@@ -63,6 +65,39 @@ const Header: React.FC = () => {
                         </>
                     ) : (
                         <Link to='/login'>Войти</Link>
+                    )}
+                </div>
+            </div>
+
+            <div className='header__mobile__wrapper'>
+                <Link to={'/'} className='header__mobile__wrapper-title'>
+                    <h2>Доставка еды</h2>
+                </Link>
+
+                <div className='header__mobile__wrapper-links'>
+                    <Link to='/cart' className='header__mobile__wrapper-link'>
+                        <FaShoppingCart />
+                    </Link>
+                    {token ? (
+                        <>
+                            <Link
+                                to='/orders'
+                                className='header__mobile__wrapper-link'
+                            >
+                                <FiTruck />
+                            </Link>
+                            <Link
+                                to='/'
+                                onClick={() => dispatch(logout())}
+                                className='header__mobile__wrapper-link'
+                            >
+                                <GrLogout />
+                            </Link>
+                        </>
+                    ) : (
+                        <Link to='/login'>
+                            <GrLogin />
+                        </Link>
                     )}
                 </div>
             </div>
