@@ -53,7 +53,7 @@ const Home: React.FC = () => {
                             568: {
                                 perPage: 2,
                                 autoWidth: true,
-                                focus: 'center',
+                                drag: 'free',
                             },
                         },
                     }}
