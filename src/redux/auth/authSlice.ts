@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 interface AuthState {
     token: string | null
     userId: string | null
+    expiration: number | null
 }
 
 const initialState: AuthState = {
     token: null,
     userId: null,
+    expiration: null,
 }
 
 const authSlice = createSlice({
@@ -17,15 +19,16 @@ const authSlice = createSlice({
         login: (state, action) => {
             state.token = action.payload.token
             state.userId = action.payload.userId
+            state.expiration = action.payload.expiration
 
-            const tokenExpiration = new Date().getTime() * 1000 * 60 * 60 * 5
+            // const tokenExpiration = new Date().getTime() + 1000 * 60 * 60 * 5
 
             localStorage.setItem(
                 'userData',
                 JSON.stringify({
                     token: state.token,
                     userId: state.userId,
-                    expiration: tokenExpiration,
+                    expiration: state.expiration,
                 })
             )
         },

@@ -14,7 +14,7 @@ export const useAuth = () => {
         if (
             storedData &&
             storedData.token &&
-            storedData.expiration > new Date().getTime() * 1000 * 60 * 60
+            storedData.expiration > new Date().getTime()
         ) {
             dispatch(
                 login({

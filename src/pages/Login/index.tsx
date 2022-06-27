@@ -43,6 +43,7 @@ const Login: React.FC = () => {
                 login({
                     token: res.token,
                     userId: res.userId,
+                    expiration: res.expiration,
                 })
             )
 
@@ -60,6 +61,7 @@ const Login: React.FC = () => {
                 login({
                     token: res.token,
                     userId: res.userId,
+                    expiration: res.expiration,
                 })
             )
 
