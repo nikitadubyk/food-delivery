@@ -27,6 +27,7 @@ const OrderModal: React.FC<OrderModalProps> = ({
 }) => {
     return (
         <Modal
+            onClose={onClose}
             isOpen={isOpen}
             title='Оформление заказа'
             message={<ModalView onClose={onClose} totalPrice={totalPrice} />}

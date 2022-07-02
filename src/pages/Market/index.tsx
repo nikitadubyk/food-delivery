@@ -49,6 +49,7 @@ const Market: React.FC = () => {
             content={`Страница с едой ресторана ${filteredProduct?.name}`}
         >
             <Modal
+                onClose={() => closeModalHandler()}
                 isOpen={!!errorMessage}
                 title='Очистить корзину?'
                 message='В вашей корзине есть блюда из другого ресторана.
