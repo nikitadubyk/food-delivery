@@ -1,17 +1,17 @@
 export interface CartItemType {
     id: string
-    restarautId: string | undefined
-    restarautName: string | undefined
-    description: string
     title: string
     image: string
     price: number
     count: number
+    description: string
+    restarautId: string | undefined
+    restarautName: string | undefined
 }
 
 export interface CartSliceState {
-    cart: CartItemType[]
     totalPrice: number
-    restarautId: string | undefined
+    cart: CartItemType[]
     errorMessage: string
+    restarautId: string | undefined
 }

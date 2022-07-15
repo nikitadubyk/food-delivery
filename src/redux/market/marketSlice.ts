@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { MarketType } from './types'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 interface MarketSliceState {
     market: MarketType[]
@@ -8,8 +8,8 @@ interface MarketSliceState {
 }
 
 const initialState: MarketSliceState = {
-    correctMarket: null,
     market: [],
+    correctMarket: null,
     loadingStatus: 'idle',
 }
 

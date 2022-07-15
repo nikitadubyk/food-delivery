@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import './Modal.css'
 
 interface ModalProps {
     title: string
-    message: string | React.ReactNode
-    footer?: string | React.ReactNode
     isOpen: boolean
     onClose: () => void
+    message: string | React.ReactNode
+    footer?: string | React.ReactNode
 }
 
 const Modal: React.FC<ModalProps> = ({
     title,
-    message,
     footer,
     isOpen,
+    message,
     onClose,
 }) => {
     useEffect(() => {

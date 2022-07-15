@@ -1,22 +1,20 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaCarAlt } from 'react-icons/fa'
 
 import style from './Card.module.css'
-
 interface CardProps {
-    image: string | undefined
-    name?: string
-    timeDelivery?: string
     id?: string
+    name?: string
     slider?: boolean
+    timeDelivery?: string
+    image: string | undefined
 }
 
 const Card: React.FC<CardProps> = ({
-    image,
-    name,
-    timeDelivery,
     id,
+    name,
+    image,
+    timeDelivery,
     slider = false,
 }) => {
     return (

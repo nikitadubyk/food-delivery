@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Filter {
-    activeFilter: string
     search: string
+    activeFilter: string
 }
 
 const initialState: Filter = {
-    activeFilter: 'Все',
     search: '',
+    activeFilter: 'Все',
 }
 
 const filterSlice = createSlice({

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart } from '../../redux/cart/cartSlice'
 import { selectCartItemById } from '../../redux/cart/selectors'
@@ -9,26 +8,26 @@ import style from './FoodCard.module.css'
 
 interface FoodCardProps {
     id: string
-    restarautId: string | undefined
-    restarautName: string | undefined
     image: string
     title: string
-    description: string
-    calories?: string
-    gramm?: string
     price: number
+    gramm?: string
+    calories?: string
+    description: string
+    restarautId: string | undefined
+    restarautName: string | undefined
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
     id,
-    restarautId,
-    restarautName,
     image,
     title,
-    description,
-    calories,
     gramm,
     price,
+    calories,
+    restarautId,
+    description,
+    restarautName,
 }) => {
     const dispatch = useDispatch()
     const cartItem = useSelector(selectCartItemById(id))
@@ -36,13 +35,13 @@ const FoodCard: React.FC<FoodCardProps> = ({
     const onAddItem = () => {
         const item = {
             id,
-            restarautId,
-            restarautName,
-            description,
             title,
             image,
             price,
             count: 0,
+            restarautId,
+            description,
+            restarautName,
         }
         dispatch(addItemToCart(item))
     }

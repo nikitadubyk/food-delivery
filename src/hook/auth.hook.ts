@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { selectAuth } from '../redux/auth/selectors'
+import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../redux/auth/authSlice'
 
 export const useAuth = () => {
-    const { token } = useSelector(selectAuth)
     const dispatch = useDispatch()
+    const { token } = useSelector(selectAuth)
 
     useEffect(() => {
         //@ts-ignore

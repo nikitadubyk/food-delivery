@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { OrdersType } from '../../pages/Orders/types'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 interface OrdersState {
     orders: OrdersType | null

@@ -1,22 +1,23 @@
-import React, { useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { Link } from 'react-router-dom'
+import { FiTruck } from 'react-icons/fi'
+import { FaShoppingCart } from 'react-icons/fa'
+import { GrLogout, GrLogin } from 'react-icons/gr'
 import { useDispatch, useSelector } from 'react-redux'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+
+import { logout } from '../../redux/auth/authSlice'
 import { selectAuth } from '../../redux/auth/selectors'
 import { selectCart } from '../../redux/cart/selectors'
 import { changeSearch } from '../../redux/filter/filterSlice'
-import { logout } from '../../redux/auth/authSlice'
-import { FaShoppingCart } from 'react-icons/fa'
-import { FiTruck } from 'react-icons/fi'
-import { GrLogout, GrLogin } from 'react-icons/gr'
 
 import './Header.css'
 
 const Header: React.FC = () => {
-    const [value, setValue] = React.useState<string>('')
     const dispatch = useDispatch()
-    const { cart, totalPrice } = useSelector(selectCart)
     const { token } = useSelector(selectAuth)
+    const [value, setValue] = useState<string>('')
+    const { cart, totalPrice } = useSelector(selectCart)
 
     const onChangeSearchValue = useCallback(
         debounce((value: string) => {
@@ -29,7 +30,7 @@ const Header: React.FC = () => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)
         onChangeSearchValue(event.target.value)
     }

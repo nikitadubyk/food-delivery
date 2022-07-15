@@ -1,4 +1,4 @@
 export interface ImageData {
-    image: string
     url: string
+    image: string
 }

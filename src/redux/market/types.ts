@@ -2,19 +2,19 @@ export interface MarketFoodType {
     id: string
     image: string
     title: string
-    description: string
     gramm: string
-    calories: string
     price: number
     filter: string
+    calories: string
+    description: string
 }
 
 export interface MarketType {
+    filters: string[]
     id: string | undefined
-    image: string | undefined
+    food: MarketFoodType[]
     name: string | undefined
+    image: string | undefined
     timeDelivery: string | undefined
     priceDelivery: string | undefined
-    filters: string[]
-    food: MarketFoodType[]
 }

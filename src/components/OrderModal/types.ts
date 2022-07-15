@@ -5,23 +5,23 @@ export interface OrderModalProps {
 }
 
 export interface ModalViewProps {
-    onClose: () => void
     totalPrice: number
+    onClose: () => void
 }
 
 export interface FormValues {
     name: string
     phone: string
-    delivery: 'Самовывоз' | 'Доставка'
     address?: string
+    delivery: 'Самовывоз' | 'Доставка'
 }
 
 export interface PostOrderType {
     name: string
     phone: string
-    delivery: 'Самовывоз' | 'Доставка'
     address?: string
-    order: { title: string; count: number }[]
     totalPrice: number
     restarautId: string | undefined
+    delivery: 'Самовывоз' | 'Доставка'
+    order: { title: string; count: number }[]
 }

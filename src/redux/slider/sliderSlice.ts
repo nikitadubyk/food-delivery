@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
 import { ImageData } from './types'
+import { createSlice } from '@reduxjs/toolkit'
 
 interface SliderImages {
     sliderImages: ImageData[]

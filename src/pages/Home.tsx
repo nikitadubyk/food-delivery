@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import { selectSlider } from '../redux/slider/selectors'
-import { useSelector } from 'react-redux'
 import { useAppDispatch } from '../redux/hooks'
-import { fetchMarkets } from '../redux/market/marketSlice'
-import { filteredMarketSelector } from '../redux/filter/selectors'
-import { selectMarketData } from '../redux/market/selectors'
+import { selectSlider } from '../redux/slider/selectors'
 import { selectFilter } from '../redux/filter/selectors'
+import { fetchMarkets } from '../redux/market/marketSlice'
+import { selectMarketData } from '../redux/market/selectors'
+import { filteredMarketSelector } from '../redux/filter/selectors'
 
-import SkeletonMarket from '../components/Card/SkeletonMarket'
 import Card from '../components/Card'
 import Layout from '../components/Layout'
+import SkeletonMarket from '../components/Card/SkeletonMarket'
 
 import '@splidejs/splide/dist/css/splide.min.css'
 
 const Home: React.FC = () => {
-    const { loadingStatus } = useSelector(selectMarketData)
+    const dispatch = useAppDispatch()
     const { search } = useSelector(selectFilter)
     const { sliderImages } = useSelector(selectSlider)
-    const dispatch = useAppDispatch()
+    const { loadingStatus } = useSelector(selectMarketData)
     const filteredMarket = useSelector(filteredMarketSelector)
 
     useEffect(() => {
@@ -32,10 +32,10 @@ const Home: React.FC = () => {
 
     return (
         <Layout
-            title='Доставка еды'
-            content='Доставка еды в г.Горловка с различных ресторанов'
+            title="Доставка еды"
+            content="Доставка еды в г.Горловка с различных ресторанов"
         >
-            <div className='root'>
+            <div className="root">
                 <Splide
                     options={{
                         perPage: 4,
@@ -47,13 +47,13 @@ const Home: React.FC = () => {
                             },
                             768: {
                                 perPage: 2,
-                                pagination: true,
                                 arrows: true,
+                                pagination: true,
                             },
                             568: {
                                 perPage: 2,
-                                autoWidth: true,
                                 drag: 'free',
+                                autoWidth: true,
                             },
                         },
                     }}
@@ -62,26 +62,26 @@ const Home: React.FC = () => {
                         return (
                             <SplideSlide key={i}>
                                 <Card
-                                    image={image.image}
-                                    id={image.url}
                                     slider
+                                    id={image.url}
+                                    image={image.image}
                                 />
                             </SplideSlide>
                         )
                     })}
                 </Splide>
 
-                <h2 className='home-title'>Рестораны</h2>
-                <div className='cards__wrapper'>
+                <h2 className="home-title">Рестораны</h2>
+                <div className="cards__wrapper">
                     {loadingStatus === 'loading' && skeletons}
-                    {filteredMarket.map(market => {
+                    {filteredMarket.map((market) => {
                         return (
                             <Card
                                 id={market.id}
-                                image={market.image}
-                                name={market.name}
-                                timeDelivery={market.timeDelivery}
                                 key={market.id}
+                                name={market.name}
+                                image={market.image}
+                                timeDelivery={market.timeDelivery}
                             />
                         )
                     })}

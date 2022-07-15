@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectFilter } from '../../redux/filter/selectors'
 import { selectMarketData } from '../../redux/market/selectors'
@@ -7,13 +6,11 @@ import { changeActiveFilter } from '../../redux/filter/filterSlice'
 import './FoodFilter.css'
 
 const FoodFilter: React.FC = () => {
-    const { correctMarket } = useSelector(selectMarketData)
-    const { activeFilter } = useSelector(selectFilter)
     const dispatch = useDispatch()
+    const { activeFilter } = useSelector(selectFilter)
+    const { correctMarket } = useSelector(selectMarketData)
 
-    const changeFiter = (filter: string) => {
-        dispatch(changeActiveFilter(filter))
-    }
+    const changeFiter = (filter: string) => dispatch(changeActiveFilter(filter))
 
     return (
         <div className='food-filter'>

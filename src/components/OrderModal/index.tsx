@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useHttp } from '../../hook/http.hook'
-import { useSelector, useDispatch } from 'react-redux'
-import { clearCart } from '../../redux/cart/cartSlice'
+import { useState } from 'react'
+import InputMask from 'react-input-mask'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+import { useHttp } from '../../hook/http.hook'
+import { clearCart } from '../../redux/cart/cartSlice'
 import { selectCart } from '../../redux/cart/selectors'
 import { selectAuth } from '../../redux/auth/selectors'
 import {
     FormValues,
+    PostOrderType,
     ModalViewProps,
     OrderModalProps,
-    PostOrderType,
 } from './types'
 
 import Modal from '../Modal'
 import Button from '../Button'
 import Spinner from '../Spinner'
-import InputMask from 'react-input-mask'
 
 import './OrderModal.css'
 
@@ -29,15 +30,15 @@ const OrderModal: React.FC<OrderModalProps> = ({
         <Modal
             onClose={onClose}
             isOpen={isOpen}
-            title='Оформление заказа'
+            title="Оформление заказа"
             message={<ModalView onClose={onClose} totalPrice={totalPrice} />}
         />
     )
 }
 
 const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
-    const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
     const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
+    const [typeDelivery, setTypeDelivery] = useState<string>('Доставка')
 
     const { loading, error, request } = useHttp()
 
@@ -76,11 +77,11 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
         }
     }
 
-    const onSubmit: SubmitHandler<FormValues> = async data => {
+    const onSubmit: SubmitHandler<FormValues> = async (data) => {
         const obj = {
             ...data,
             order: [
-                ...cart.map(food => {
+                ...cart.map((food) => {
                     return {
                         title: food.title,
                         count: food.count,
@@ -96,12 +97,12 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='form__order'>
+        <form onSubmit={handleSubmit(onSubmit)} className="form__order">
             {isSuccessful && (
                 <h2>Спасибо за заказ, менеджер свяжется с вами!</h2>
             )}
             {error && (
-                <h2 className='error__message'>
+                <h2 className="error__message">
                     Упс, произошла ошибка, попробуйте еще!
                 </h2>
             )}
@@ -116,8 +117,8 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                                 message: 'Введите правильный адрес',
                             },
                         })}
-                        type='text'
-                        placeholder='Ваш адрес'
+                        type="text"
+                        placeholder="Ваш адрес"
                     />
                     {errors.address?.message && (
                         <p>{errors.address?.message}</p>
@@ -134,15 +135,15 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                             message: 'Введите ваше имя',
                         },
                     })}
-                    type='text'
-                    placeholder='Ваше имя'
+                    type="text"
+                    placeholder="Ваше имя"
                 />
                 {errors.name?.message && <p>{errors.name?.message}</p>}
             </div>
             <div>
                 <h4>Телефон</h4>
                 <InputMask
-                    mask='+380 71 99 99 999'
+                    mask="+380 71 99 99 999"
                     alwaysShowMask={true}
                     {...register('phone', {
                         required: 'Заполните это поле',
@@ -151,18 +152,18 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                             message: 'Введите правильный номер телефона',
                         },
                     })}
-                    type='text'
-                    placeholder='Ваш телефон'
+                    type="text"
+                    placeholder="Ваш телефон"
                 />
                 {errors.phone?.message && <p>{errors.phone?.message}</p>}
             </div>
 
             <select
                 {...register('delivery', { required: true })}
-                onChange={e => setTypeDelivery(e.target.value)}
+                onChange={(e) => setTypeDelivery(e.target.value)}
             >
-                <option value='Доставка'>Доставка</option>
-                <option value='Самовывоз'>Самовывоз</option>
+                <option value="Доставка">Доставка</option>
+                <option value="Самовывоз">Самовывоз</option>
             </select>
             {errors.delivery?.message && <p>{errors.delivery?.message}</p>}
 
@@ -171,7 +172,7 @@ const ModalView: React.FC<ModalViewProps> = ({ onClose, totalPrice }) => {
                     Закрыть
                 </Button>
 
-                <Button type='submit'>Заказать!</Button>
+                <Button type="submit">Заказать!</Button>
             </div>
             {loading && <Spinner width={50} height={50} />}
         </form>

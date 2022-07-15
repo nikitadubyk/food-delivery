@@ -1,9 +1,8 @@
-import React from 'react'
 import { Helmet } from 'react-helmet'
 
 interface LayoutProps {
-    title: string | undefined
     content: string
+    title: string | undefined
     children: React.ReactNode
 }
 

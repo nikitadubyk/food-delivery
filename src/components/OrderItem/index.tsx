@@ -1,19 +1,17 @@
-import React from 'react'
-
 import styles from './OrderItem.module.css'
 
 interface OrderItemProps {
-    restarautName: string
     date: string
-    order: { count: number; price: number; title: string }[]
     totalPrice: number
+    restarautName: string
+    order: { count: number; price: number; title: string }[]
 }
 
 const OrderItem: React.FC<OrderItemProps> = ({
-    restarautName,
     date,
     order,
     totalPrice,
+    restarautName,
 }) => {
     return (
         <div className={styles.order__item}>

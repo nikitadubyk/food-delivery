@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { login } from '../../redux/auth/authSlice'
+import { FaAngleLeft } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
 import { useHttp } from '../../hook/http.hook'
+import { login } from '../../redux/auth/authSlice'
 
 import Button from '../../components/Button'
-import Spinner from '../../components/Spinner'
 import Layout from '../../components/Layout'
+import Spinner from '../../components/Spinner'
 
-import { FaAngleLeft } from 'react-icons/fa'
 import './Login.css'
-
 interface FormInputs {
     email: string
-    password: string
     name?: string
+    password: string
 }
 
 const Login: React.FC = () => {
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const onSubmit: SubmitHandler<FormInputs> = async data => {
+    const onSubmit: SubmitHandler<FormInputs> = async (data) => {
         if (isLoginForm) {
             const res = await request(
                 `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
@@ -72,33 +72,33 @@ const Login: React.FC = () => {
         }
     }
 
-    const switchForm = () => setIsLoginForm(prevState => !prevState)
+    const switchForm = () => setIsLoginForm((prevState) => !prevState)
 
     return (
         <Layout
             title={isLoginForm ? 'Регистрация' : 'Вход'}
-            content='Страница регистрации аккаунта или входа'
+            content="Страница регистрации аккаунта или входа"
         >
-            <div className='root'>
-                <Link to='/' className='back'>
+            <div className="root">
+                <Link to="/" className="back">
                     <FaAngleLeft /> Вернуться на главную
                 </Link>
 
-                <h2 className='form__title'>
+                <h2 className="form__title">
                     {isLoginForm ? 'Регистрация' : 'Войти'}
                 </h2>
 
-                {error && <p className='form__error'>{error}</p>}
+                {error && <p className="form__error">{error}</p>}
 
-                <form onSubmit={handleSubmit(onSubmit)} className='form'>
+                <form onSubmit={handleSubmit(onSubmit)} className="form">
                     <div>
                         <h4>Почта</h4>
                         <input
                             {...register('email', {
                                 required: 'Заполните это поле',
                             })}
-                            type='email'
-                            placeholder='Ваш email'
+                            type="email"
+                            placeholder="Ваш email"
                         />
                         {errors.email?.message && (
                             <p>{errors.email?.message}</p>
@@ -112,8 +112,8 @@ const Login: React.FC = () => {
                                 {...register('name', {
                                     required: 'Заполните это поле',
                                 })}
-                                type='text'
-                                placeholder='Ваше имя'
+                                type="text"
+                                placeholder="Ваше имя"
                             />
                             {errors.name?.message && (
                                 <p>{errors.name?.message}</p>
@@ -131,18 +131,18 @@ const Login: React.FC = () => {
                                     message: 'Минимум 4 символа',
                                 },
                             })}
-                            type='password'
-                            placeholder='Ваш пароль'
+                            type="password"
+                            placeholder="Ваш пароль"
                         />
                         {errors.password?.message && (
                             <p>{errors.password?.message}</p>
                         )}
                     </div>
-                    <Button type='submit'>
+                    <Button type="submit">
                         {isLoginForm ? 'Регистрация' : 'Войти'}
                     </Button>
 
-                    <div className='form__switch' onClick={switchForm}>
+                    <div className="form__switch" onClick={switchForm}>
                         {isLoginForm
                             ? 'Перейти во вкладку вход'
                             : 'У меня нет аккаунта'}

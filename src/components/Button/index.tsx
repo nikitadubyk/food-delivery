@@ -1,23 +1,21 @@
-import React from 'react'
-
 import style from './Button.module.css'
 
 interface ButtonProps {
-    className?: string
     children: string
     reverse?: boolean
+    className?: string
     disabled?: boolean
-    type?: 'button' | 'submit'
     onClick?: () => void
+    type?: 'button' | 'submit'
 }
 
 const Button: React.FC<ButtonProps> = ({
-    className,
-    children,
     onClick,
+    children,
+    className,
     reverse = false,
-    disabled = false,
     type = 'button',
+    disabled = false,
 }) => {
     return (
         <button

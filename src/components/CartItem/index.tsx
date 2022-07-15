@@ -1,6 +1,5 @@
-import React from 'react'
-import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
+import { FaPlus, FaMinus } from 'react-icons/fa'
 import { plusItem, minusItem, removeItem } from '../../redux/cart/cartSlice'
 
 import style from './CartItem.module.css'
@@ -9,18 +8,18 @@ interface CartItemProps {
     id: string
     image: string
     title: string
-    description: string
     count: number
     price: number
+    description: string
 }
 
 const CartItem: React.FC<CartItemProps> = ({
     id,
     image,
     title,
-    description,
     count,
     price,
+    description,
 }) => {
     const dispatch = useDispatch()
 
