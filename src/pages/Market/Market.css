@@ -27,10 +27,12 @@
 }
 
 .market__food-wrapper {
-    padding: 2rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding: 0 2rem;
 }
 
 .market__food-error {
@@ -45,7 +47,6 @@
 @media (max-width: 1400px) {
     .market__food-wrapper {
         justify-content: center;
-        padding: 0;
     }
 }
 
